@@ -18,8 +18,8 @@ export const Academics: React.FC<AcademicsProps> = ({ onApplyForCurriculum }) =>
 
   const curricula = [
     {
-      id: 'cbse',
-      logoLabel: 'cbse',
+      id: 'CBSE',
+      logoLabel: 'CBSE',
       pillTag: 'National Curriculum',
       title: 'CBSE – Central Board of Secondary Education',
       heading: 'CBSE',
@@ -41,13 +41,13 @@ export const Academics: React.FC<AcademicsProps> = ({ onApplyForCurriculum }) =>
         'Concept-based and application-oriented learning',
         'Structured and progressive learning approach',
       ],
-      grades: 'Grade 1 to Grade 7 (Admissions Open 2026–27)',
+      grades: 'Grade 1 to Grade 7 (Admissions Open 2027–28)',
       recognition: 'Pan-India & Global Equivalency',
       pedagogy: 'Concept-Based, Progressive & Structured',
     },
     {
-      id: 'cambridge',
-      logoLabel: 'cambridge',
+      id: 'Cambridge',
+      logoLabel: 'Cambridge',
       pillTag: 'International Education',
       title: 'Cambridge – Global Inquiry & Analytical Learning',
       heading: 'CAMBRIDGE',
@@ -79,29 +79,33 @@ export const Academics: React.FC<AcademicsProps> = ({ onApplyForCurriculum }) =>
 
   return (
     <section ref={sectionRef} id="academics" className="py-20 lg:py-28 bg-[#fbfbfe] border-t border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header - Styled matching reference image */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center max-w-3xl mx-auto mb-14 lg:mb-16"
+          className="text-center max-w-3xl mx-auto mb-12 lg:mb-16"
         >
-          <div className="inline-block text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0d9488] mb-3">
-            Academic Pathways
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0d9488]/10 border border-[#0d9488]/20 text-[#0d9488] text-xs font-bold tracking-widest uppercase mb-4 shadow-2xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0d9488]" />
+            <span>Academic Pathways</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#292727] tracking-tight mb-4 text-balance">
-            Choose the Right Curriculum for Your Child
+
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#292727] tracking-tight mb-4 leading-snug">
+            Choose the Right Curriculum <br className="hidden sm:inline" />
+            for Your Child
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal text-balance">
+
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
             Every child learns differently. At Rockwell International School, our curriculum options are designed to
             support different learning styles, aspirations, and future pathways—helping students build strong
             foundations while developing the skills to thrive in a changing world.
           </p>
         </motion.div>
 
-        {/* 2 Showcase Style Cards (CBSE & Cambridge) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
+        {/* Full-width 2 Showcase Style Cards (CBSE & Cambridge) */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
           {curricula.map((item, index) => (
             <motion.div
               key={item.id}
@@ -116,21 +120,21 @@ export const Academics: React.FC<AcademicsProps> = ({ onApplyForCurriculum }) =>
             >
               {/* Top Half: Pastel Tinted Backdrop with Logo, Visual Asset & Pill */}
               <div
-                className={`relative ${item.theme.topBg} p-6 sm:p-7 pb-4 flex flex-col justify-between overflow-hidden min-h-[260px] sm:min-h-[280px]`}
+                className={`relative ${item.theme.topBg} p-6 sm:p-8 lg:p-9 flex flex-col justify-between overflow-hidden min-h-[280px] sm:min-h-[300px]`}
               >
                 {/* Logo and Brand Mark */}
-                <div className="flex items-center justify-between z-10">
-                  <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between z-10 mb-3">
+                  <div className="flex items-center gap-2.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-slate-900/80" />
-                    <span className={`text-xl sm:text-2xl font-black tracking-tight uppercase ${item.theme.logoColor}`}>
+                    <span className={`text-xl sm:text-2xl font-black tracking-tight ${item.theme.logoColor}`}>
                       {item.logoLabel}
                     </span>
                   </div>
                 </div>
 
                 {/* Official Accreditation Emblem & Logo Container */}
-                <div className="my-auto pt-3 pb-2 flex justify-center items-center">
-                  <div className="relative w-full max-w-[280px] h-[150px] sm:h-[160px] rounded-2xl overflow-hidden shadow-sm border border-white/80 bg-white p-5 flex items-center justify-center transition-transform duration-500 ease-out group-hover:scale-[1.03] group-hover:-translate-y-1">
+                <div className="my-auto py-3 flex justify-center items-center">
+                  <div className="relative w-full max-w-md h-[145px] sm:h-[165px] md:h-[180px] rounded-2xl overflow-hidden shadow-sm border border-white/90 bg-white p-5 sm:p-6 flex items-center justify-center transition-transform duration-500 ease-out group-hover:scale-[1.02]">
                     <img
                       src={item.image}
                       alt={item.alt}
@@ -140,7 +144,7 @@ export const Academics: React.FC<AcademicsProps> = ({ onApplyForCurriculum }) =>
                   </div>
                 </div>
 
-                {/* Overlapping Pill Tag (like Fintech, PropTech, SaaS) */}
+                {/* Overlapping Pill Tag */}
                 <div className="relative z-10 pt-2">
                   <span
                     className={`inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold shadow-xs ${item.theme.pillBg}`}
@@ -151,18 +155,20 @@ export const Academics: React.FC<AcademicsProps> = ({ onApplyForCurriculum }) =>
               </div>
 
               {/* Bottom Half: Crisp Clean White Container with Content & Link */}
-              <div className="p-6 sm:p-7 flex flex-col justify-between flex-grow">
+              <div className="p-6 sm:p-8 lg:p-9 flex flex-col justify-between flex-grow">
                 <div>
-                  <h3 className="text-xl font-bold text-[#292727] tracking-tight mb-3 group-hover:text-[#2F5D9F] transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#292727] tracking-tight mb-3 group-hover:text-[#2F5D9F] transition-colors leading-snug">
                     {item.title}
                   </h3>
 
-                  <p className="text-sm text-slate-600 leading-relaxed font-normal mb-5">{item.description}</p>
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal mb-6">
+                    {item.description}
+                  </p>
 
                   {/* Bullet points summary */}
-                  <div className="space-y-2 mb-6 pt-3 border-t border-slate-100">
+                  <div className="space-y-3 mb-6 pt-4 border-t border-slate-100">
                     {item.features.map((feature, fIdx) => (
-                      <div key={fIdx} className="flex items-start gap-2.5 text-xs text-slate-700">
+                      <div key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
                         <CheckCircle2 className="w-4 h-4 text-[#EF7D2D] shrink-0 mt-0.5" />
                         <span className="font-medium leading-snug">{feature}</span>
                       </div>
@@ -174,7 +180,7 @@ export const Academics: React.FC<AcademicsProps> = ({ onApplyForCurriculum }) =>
                 <div className="pt-4 border-t border-slate-100">
                   <button
                     onClick={() => onApplyForCurriculum(item.heading)}
-                    className="w-full text-center text-sm font-bold text-white bg-[#2F5D9F] hover:bg-[#254b82] py-2.5 px-4 rounded-xl shadow-xs transition-colors cursor-pointer"
+                    className="w-full text-center text-sm sm:text-base font-bold text-white bg-[#2F5D9F] hover:bg-[#254b82] py-3 px-6 rounded-xl shadow-xs transition-colors cursor-pointer"
                   >
                     Apply Now
                   </button>

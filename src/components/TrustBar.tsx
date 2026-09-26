@@ -1,29 +1,91 @@
-import React, { useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+
+interface AnimatedCounterProps {
+  target: number;
+  decimals?: number;
+  suffix?: string;
+  trigger: boolean;
+  duration?: number;
+}
+
+const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
+  target,
+  decimals = 0,
+  suffix = '',
+  trigger,
+  duration = 1800,
+}) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!trigger) return;
+
+    let startTime: number | null = null;
+    let animationFrameId: number;
+
+    const easeOutCubic = (t: number): number => {
+      return 1 - Math.pow(1 - t, 3);
+    };
+
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeOutCubic(progress);
+
+      const currentValue = easedProgress * target;
+      setCount(currentValue);
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(step);
+      } else {
+        setCount(target);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(step);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [trigger, target, duration]);
+
+  const formatted = decimals > 0 ? count.toFixed(decimals) : Math.round(count).toString();
+
+  return (
+    <span>
+      {formatted}
+      {suffix}
+    </span>
+  );
+};
 
 export const TrustBar: React.FC = () => {
   const barRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(barRef, { once: true, margin: '-40px 0px' });
+  const isInView = useInView(barRef, { once: true, margin: '0px' });
 
   const stats = [
     {
-      value: '8.5',
-      unit: '',
+      target: 8.5,
+      decimals: 1,
+      suffix: '',
       label: 'Acres Campus',
     },
     {
-      value: '3',
-      unit: '',
+      target: 3,
+      decimals: 0,
+      suffix: '',
       label: 'Academic Blocks',
     },
     {
-      value: '15',
-      unit: '',
+      target: 15,
+      decimals: 0,
+      suffix: '',
       label: 'Years of Academic Excellence',
     },
     {
-      value: '2.6L',
-      unit: '',
+      target: 2.6,
+      decimals: 1,
+      suffix: 'L',
       label: 'Sq.ft of Sports Facilities',
     },
   ];
@@ -48,7 +110,12 @@ export const TrustBar: React.FC = () => {
             >
               <div className="flex items-baseline justify-center">
                 <span className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#2F5D9F] tracking-tight tabular-nums">
-                  {stat.value}
+                  <AnimatedCounter
+                    target={stat.target}
+                    decimals={stat.decimals}
+                    suffix={stat.suffix}
+                    trigger={isInView}
+                  />
                 </span>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#EF7D2D] ml-1.5 mb-2 shrink-0" />
               </div>
@@ -62,4 +129,3 @@ export const TrustBar: React.FC = () => {
     </section>
   );
 };
-

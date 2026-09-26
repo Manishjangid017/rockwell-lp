@@ -53,7 +53,6 @@ function LandingPage() {
   return (
     <div className="min-h-screen bg-white text-[#292727] flex flex-col font-sans selection:bg-[#2F5D9F] selection:text-white">
       <Header onApplyClick={handleApplyClick} />
-
       <main className="flex-grow">
         <Hero onApplyClick={handleApplyClick} onBrochureClick={downloadBrochure} onFormSubmit={handleFormSubmit} />
         <TrustBar />

@@ -68,41 +68,46 @@ export const WhyRockwell: React.FC = () => {
         </motion.div>
 
         {/* Scroll-Driven Sticky Stacking Cards */}
-        <div className="relative space-y-12 sm:space-y-16 pb-12">
+        <div className="relative space-y-6 sm:space-y-8 pb-12">
           {features.map((item, index) => {
-            const topOffset = 90 + index * 24;
-            const zIndex = 10 + index * 5;
+            const zIndex = 10 + index * 10;
 
             return (
               <div
                 key={item.title}
                 style={{
-                  top: `${topOffset}px`,
+                  top: '96px',
                   zIndex: zIndex,
                 }}
-                className="sticky w-full bg-white text-[#292727] rounded-[28px] sm:rounded-[34px] p-6 sm:p-8 lg:p-10 shadow-xl border border-slate-200/90 transition-all duration-300"
+                className="sticky w-full bg-[#2F5D9F] text-white rounded-[26px] sm:rounded-[32px] p-6 sm:p-8 lg:p-10 shadow-[0_-12px_36px_rgba(0,0,0,0.28)] shadow-2xl border border-[#254b82] transition-all duration-200"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                   {/* Media artwork container */}
                   <div className="lg:col-span-5 w-full">
-                    <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border border-slate-200 bg-slate-900 group">
+                    <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-white/20 bg-slate-900 group">
                       <img
                         src={item.image}
                         alt={item.alt}
                         className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
                     </div>
                   </div>
 
                   {/* Typography & Description Only */}
                   <div className="lg:col-span-7 flex flex-col justify-center py-2 lg:py-4">
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#2F5D9F] tracking-tight mb-4 leading-tight">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-bold tracking-widest uppercase text-orange-200 bg-white/10 px-3 py-1 rounded-full border border-white/15">
+                        0{index + 1} / 0{features.length}
+                      </span>
+                    </div>
+
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight mb-4 leading-tight">
                       {item.title}
                     </h3>
 
-                    <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+                    <p className="text-base sm:text-lg text-blue-100/90 leading-relaxed font-normal">
                       {item.description}
                     </p>
                   </div>
@@ -115,7 +120,3 @@ export const WhyRockwell: React.FC = () => {
     </section>
   );
 };
-
-
-
-

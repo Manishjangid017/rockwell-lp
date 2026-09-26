@@ -1,5 +1,83 @@
-@import url('https://fonts.cdnfonts.com/css/century-gothic');
 @import 'tailwindcss';
+
+/* Direct robust @font-face declarations for Century Gothic to ensure true bold weight */
+@font-face {
+  font-family: 'Century Gothic';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Century Gothic'),
+    local('CenturyGothic'),
+    url('https://fonts.cdnfonts.com/s/18111/GOTHIC.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Century Gothic';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Century Gothic Italic'),
+    local('CenturyGothic-Italic'),
+    url('https://fonts.cdnfonts.com/s/18111/GOTHICI.woff') format('woff');
+}
+
+/* Explicitly bind 600, 700, 800, and 900 to GOTHICB to prevent fallback to 400 */
+@font-face {
+  font-family: 'Century Gothic';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local('Century Gothic Bold'),
+    local('CenturyGothic-Bold'),
+    url('https://fonts.cdnfonts.com/s/18111/GOTHICB.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Century Gothic';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local('Century Gothic Bold'),
+    local('CenturyGothic-Bold'),
+    url('https://fonts.cdnfonts.com/s/18111/GOTHICB.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Century Gothic';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src:
+    local('Century Gothic Bold'),
+    local('CenturyGothic-Bold'),
+    url('https://fonts.cdnfonts.com/s/18111/GOTHICB.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Century Gothic';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src:
+    local('Century Gothic Bold'),
+    local('CenturyGothic-Bold'),
+    url('https://fonts.cdnfonts.com/s/18111/GOTHICB.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Century Gothic';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local('Century Gothic Bold Italic'),
+    local('CenturyGothic-BoldItalic'),
+    url('https://fonts.cdnfonts.com/s/18111/GOTHICBI.woff') format('woff');
+}
 
 @theme {
   --font-sans: 'Century Gothic', 'CenturyGothic', 'AppleGothic', 'URW Gothic', 'Didact Gothic', sans-serif;
@@ -18,24 +96,18 @@
     font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', 'URW Gothic', 'Didact Gothic', sans-serif;
     color: #292727;
     background-color: #ffffff;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
+  /* Ensure all headings on the page are prominently bold */
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6,
-  p,
-  span,
-  a,
-  button,
-  input,
-  select,
-  textarea,
-  label {
+  h6 {
     font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', 'URW Gothic', 'Didact Gothic', sans-serif;
+    font-weight: 700 !important;
   }
 }
 

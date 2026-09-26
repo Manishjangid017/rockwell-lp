@@ -12,11 +12,6 @@ import {
 } from 'lucide-react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 
-import scienceLabImg from '../assets/images/facility_science_lab_1790319872003.jpg';
-import libraryImg from '../assets/images/facility_library_1790319885511.jpg';
-import sportsImg from '../assets/images/facility_sports_ground_1790319897728.jpg';
-import campusHeroImg from '../assets/images/hero_rockwell_campus_1790319858613.jpg';
-
 interface CampusFacilitiesProps {
   onOpenVirtualTour?: () => void;
 }
@@ -34,7 +29,7 @@ export const CampusFacilities: React.FC<CampusFacilitiesProps> = () => {
       tag: 'Experiential STEM',
       description:
         'Hands-on science learning with modern equipment that inspires curiosity, experimentation, and innovation.',
-      image: scienceLabImg,
+      image: 'https://mauliarts.in/assets/images/integrated-science-lab-in-india.jpg',
       alt: 'Rockwell International School Science Laboratory',
     },
     {
@@ -44,7 +39,7 @@ export const CampusFacilities: React.FC<CampusFacilitiesProps> = () => {
       tag: 'Knowledge Hub',
       description:
         'A well-stocked learning space that nurtures reading, research, curiosity, and independent learning.',
-      image: libraryImg,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgnZrYrOuSzn5nlcYIN4UzQ7iQf5qzVJb3SNDPBJuFsg&s=10',
       alt: 'Rockwell International School Contemporary Library & Media Center',
     },
     {
@@ -54,7 +49,7 @@ export const CampusFacilities: React.FC<CampusFacilitiesProps> = () => {
       tag: 'Digital Literacy',
       description:
         'A technology-enabled space where students develop digital literacy, coding, research, and computational skills.',
-      image: scienceLabImg,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREj53oi83XkEogKDemodDUsFKnnR0L6xm-Prsu3Ic9dA&s=10',
       alt: 'Rockwell International School Technology Computer Lab',
     },
     {
@@ -64,7 +59,7 @@ export const CampusFacilities: React.FC<CampusFacilitiesProps> = () => {
       tag: 'Nutrition & Wellness',
       description:
         'A hygienic and comfortable dining space serving nutritious, balanced vegetarian meals for students.',
-      image: campusHeroImg,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0MXrP1ZWwjg3kJhZ-W7YpiYqgPzGOiDJ3YFKfI1fGXw&s=10',
       alt: 'Rockwell International School Dining Hall & Kitchen',
     },
     {
@@ -74,7 +69,7 @@ export const CampusFacilities: React.FC<CampusFacilitiesProps> = () => {
       tag: 'Faculty Community',
       description:
         'A collaborative space that supports teacher planning, professional development, and meaningful collaboration.',
-      image: libraryImg,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBtvuJYZCu7HYiHqXoG4r4O9FVTiwj8GLwpDRB38Cv_w&s=10',
       alt: 'Rockwell International School Teacher Planning Room',
     },
     {
@@ -84,7 +79,7 @@ export const CampusFacilities: React.FC<CampusFacilitiesProps> = () => {
       tag: '2.6L Sq.ft Sports Complex',
       description:
         'World-class sports facilities and play areas that promote fitness, teamwork, coordination, and sportsmanship.',
-      image: sportsImg,
+      image: 'https://rockwellshamshabad.com/wp-content/uploads/2025/03/ROCKWELL-SCHOOL-IMAGE-.jpg',
       alt: 'Rockwell International School 2.6L sq.ft Sports Facilities',
     },
     {
@@ -94,7 +89,7 @@ export const CampusFacilities: React.FC<CampusFacilitiesProps> = () => {
       tag: 'Creative & Performing Arts',
       description:
         'Dedicated spaces for music, dance, arts, crafts, indoor sports, and activities that encourage creativity and self-expression.',
-      image: campusHeroImg,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJy-6GhBdGtImealvdOeYCy_QV_73hmJjIrdDjHGZLag&s=10',
       alt: 'Rockwell International School Arts and Music Center',
     },
     {
@@ -104,7 +99,7 @@ export const CampusFacilities: React.FC<CampusFacilitiesProps> = () => {
       tag: 'GPS & Real-time Tracking',
       description:
         'GPS-enabled buses with trained staff, CCTV, first-aid, and real-time tracking for safe and reliable student transportation.',
-      image: sportsImg,
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA82YIz2OHgDTOCDoCs5gqSjCvwW6jGGmJR2bMIkUxRQ&s=10',
       alt: 'Rockwell International School Safe Transport Fleet',
     },
   ];
@@ -130,7 +125,9 @@ export const CampusFacilities: React.FC<CampusFacilitiesProps> = () => {
               Life at Rockwell
             </h2>
             <p className="text-base text-slate-700 leading-relaxed mt-2 font-normal">
-              A thoughtfully designed campus that makes learning engaging and meaningful. Modern facilities support curiosity, creativity, and hands-on learning. Every space is designed to help students learn, grow, and thrive.
+              A thoughtfully designed campus that makes learning engaging and meaningful. Modern facilities support
+              curiosity, creativity, and hands-on learning. Every space is designed to help students learn, grow, and
+              thrive.
             </p>
           </div>
         </motion.div>
@@ -163,27 +160,19 @@ export const CampusFacilities: React.FC<CampusFacilitiesProps> = () => {
                   <div className="flex items-center gap-3.5">
                     <div
                       className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
-                        isSelected
-                          ? 'bg-[#2F5D9F] text-white'
-                          : 'bg-slate-100 group-hover:bg-slate-200 text-slate-600'
+                        isSelected ? 'bg-[#2F5D9F] text-white' : 'bg-slate-100 group-hover:bg-slate-200 text-slate-600'
                       }`}
                     >
                       <Icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-[#292727] tracking-tight">
-                        {facility.name}
-                      </div>
-                      <div className="text-xs text-slate-500 font-medium">
-                        {facility.tag}
-                      </div>
+                      <div className="text-sm font-bold text-[#292727] tracking-tight">{facility.name}</div>
+                      <div className="text-xs text-slate-500 font-medium">{facility.tag}</div>
                     </div>
                   </div>
                   <ChevronRight
                     className={`w-4 h-4 transition-transform ${
-                      isSelected
-                        ? 'text-[#2F5D9F] translate-x-1'
-                        : 'text-slate-300 group-hover:text-slate-500'
+                      isSelected ? 'text-[#2F5D9F] translate-x-1' : 'text-slate-300 group-hover:text-slate-500'
                     }`}
                   />
                 </button>
@@ -225,12 +214,8 @@ export const CampusFacilities: React.FC<CampusFacilitiesProps> = () => {
                       <span>·</span>
                       <span>Shamshabad Campus</span>
                     </div>
-                    <h3 className="text-2xl font-extrabold text-[#292727] mb-3">
-                      {current.name}
-                    </h3>
-                    <p className="text-base text-slate-600 leading-relaxed font-normal">
-                      {current.description}
-                    </p>
+                    <h3 className="text-2xl font-extrabold text-[#292727] mb-3">{current.name}</h3>
+                    <p className="text-base text-slate-600 leading-relaxed font-normal">{current.description}</p>
                   </div>
                 </motion.div>
               </AnimatePresence>

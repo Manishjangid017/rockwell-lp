@@ -58,10 +58,8 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-sm py-2.5 border-b border-slate-100'
-          : 'bg-gradient-to-b from-black/60 via-black/30 to-transparent py-4'
+      className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md transition-all duration-300 border-b border-slate-100 ${
+        isScrolled ? 'shadow-sm py-2.5' : 'shadow-xs py-3'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,12 +70,8 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
             className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5D9F] rounded-lg transition-transform hover:opacity-95"
             aria-label="Rockwell International School Home"
           >
-            <div className={`transition-all duration-300 ${isScrolled ? 'h-11 sm:h-12' : 'h-12 sm:h-14'}`}>
-              <Logo
-                variant={isScrolled ? 'color' : 'white'}
-                className="h-full w-auto max-w-[190px] sm:max-w-[230px]"
-                showSubtitle={true}
-              />
+            <div className={`transition-all duration-300 ${isScrolled ? 'h-11 sm:h-12' : 'h-12 sm:h-13'}`}>
+              <Logo variant="color" className="h-full w-auto max-w-[190px] sm:max-w-[230px]" showSubtitle={true} />
             </div>
           </a>
 
@@ -92,26 +86,16 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
                   href={link.href}
                   onClick={() => setActiveNav(link.name)}
                   className={`group inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-xl sm:rounded-2xl text-[15px] sm:text-base font-bold transition-all duration-200 cursor-pointer active:scale-95 ${
-                    isScrolled
-                      ? isActive
-                        ? 'bg-[#2F5D9F] text-white shadow-sm'
-                        : 'text-slate-700 hover:bg-[#2F5D9F] hover:text-white hover:shadow-sm'
-                      : isActive
-                        ? 'bg-white text-[#2F5D9F] shadow-md'
-                        : 'text-white/95 hover:bg-white hover:text-[#2F5D9F] hover:shadow-md'
+                    isActive
+                      ? 'bg-[#2F5D9F] text-white shadow-sm'
+                      : 'text-slate-700 hover:bg-[#2F5D9F] hover:text-white hover:shadow-sm'
                   }`}
                 >
                   <span>{link.name}</span>
                   {link.hasDropdown && (
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5 ${
-                        isScrolled
-                          ? isActive
-                            ? 'text-white'
-                            : 'text-slate-500 group-hover:text-white'
-                          : isActive
-                            ? 'text-[#2F5D9F]'
-                            : 'text-white/80 group-hover:text-[#2F5D9F]'
+                        isActive ? 'text-white' : 'text-slate-400 group-hover:text-white'
                       }`}
                     />
                   )}
@@ -125,9 +109,7 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
             <div className="flex items-center gap-3.5 text-xs font-semibold">
               <a
                 href="tel:+919000079992"
-                className={`flex items-center gap-1.5 transition-colors ${
-                  isScrolled ? 'text-[#2F5D9F] hover:text-[#1e3b68]' : 'text-white hover:text-orange-200'
-                }`}
+                className="flex items-center gap-1.5 text-[#2F5D9F] hover:text-[#1e3b68] transition-colors"
                 title="Call Admissions"
               >
                 <Phone className="w-3.5 h-3.5" />
@@ -139,9 +121,7 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
                 href="https://wa.me/919000079992"
                 target="_blank"
                 rel="noreferrer"
-                className={`flex items-center gap-1.5 transition-colors ${
-                  isScrolled ? 'text-emerald-700 hover:text-emerald-800' : 'text-emerald-300 hover:text-emerald-200'
-                }`}
+                className="flex items-center gap-1.5 text-emerald-700 hover:text-emerald-800 transition-colors"
                 title="WhatsApp Admissions"
               >
                 <MessageCircle className="w-3.5 h-3.5" />
@@ -162,9 +142,7 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
           <div className="flex lg:hidden items-center gap-2.5">
             <a
               href="tel:+919000079992"
-              className={`p-2 rounded-lg transition-colors ${
-                isScrolled ? 'text-[#2F5D9F] bg-blue-50' : 'text-white bg-white/15 backdrop-blur-sm'
-              }`}
+              className="p-2 rounded-lg text-[#2F5D9F] bg-blue-50 transition-colors"
               aria-label="Call Admissions"
             >
               <Phone className="w-4 h-4" />
@@ -174,9 +152,7 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
               href="https://wa.me/919000079992"
               target="_blank"
               rel="noreferrer"
-              className={`p-2 rounded-lg transition-colors ${
-                isScrolled ? 'text-emerald-600 bg-emerald-50' : 'text-emerald-300 bg-white/15 backdrop-blur-sm'
-              }`}
+              className="p-2 rounded-lg text-emerald-600 bg-emerald-50 transition-colors"
               aria-label="WhatsApp"
             >
               <MessageCircle className="w-4 h-4" />
@@ -184,9 +160,7 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`p-2 rounded-lg focus-visible:ring-2 focus-visible:ring-[#2F5D9F] ${
-                isScrolled ? 'text-[#292727] bg-slate-100' : 'text-white bg-white/15'
-              }`}
+              className="p-2 rounded-lg text-[#292727] bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2F5D9F]"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -225,7 +199,9 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
           <div className="pt-2 border-t border-slate-100 flex flex-col gap-3">
             <div className="flex items-center justify-between text-xs text-slate-600 px-1 font-medium">
               <span>Admissions Helpline:</span>
-              <a href="tel:+919000079992" className="text-[#2F5D9F] font-bold">+91 90000 79992</a>
+              <a href="tel:+919000079992" className="text-[#2F5D9F] font-bold">
+                +91 90000 79992
+              </a>
             </div>
 
             <button
@@ -244,4 +220,3 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
     </header>
   );
 };
-
