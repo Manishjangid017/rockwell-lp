@@ -1,0 +1,55 @@
+@import url('https://fonts.cdnfonts.com/css/century-gothic');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Century Gothic', 'CenturyGothic', 'AppleGothic', 'URW Gothic', 'Didact Gothic', sans-serif;
+  --font-heading: 'Century Gothic', 'CenturyGothic', 'AppleGothic', 'URW Gothic', 'Didact Gothic', sans-serif;
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', 'URW Gothic', 'Didact Gothic', sans-serif;
+  }
+
+  html,
+  body {
+    font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', 'URW Gothic', 'Didact Gothic', sans-serif;
+    color: #292727;
+    background-color: #ffffff;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  label {
+    font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', 'URW Gothic', 'Didact Gothic', sans-serif;
+  }
+}
+
+/* Custom scrollbar for modern browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

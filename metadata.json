@@ -1,0 +1,8 @@
+{
+  "name": "Remix Rockwell International School - Shamshabad",
+  "description": "Rockwell International School Shamshabad: Nurturing every child\u0027s potential through CBSE, Cambridge, and IB Diploma curricula on a modern 8.5-acre campus. Admissions Open for 2026–27.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
