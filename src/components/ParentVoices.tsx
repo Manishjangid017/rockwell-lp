@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-import { motion, useInView } from 'framer-motion';
+import React, { useState, useEffect, useRef } from "react";
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 
 interface Testimonial {
   id: number;
@@ -12,32 +12,32 @@ interface Testimonial {
 
 export const ParentVoices: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-50px 0px' });
+  const isInView = useInView(sectionRef, { once: true, margin: "-50px 0px" });
 
   const testimonials: Testimonial[] = [
     {
       id: 1,
       quote:
         "Rockwell truly has stood by its word - HOLISTIC DEVELOPMENT. The development in the spheres of academics & sports which I witness in my child is truly heartening. Thank you 'Rockwell'",
-      author: 'S Ram Chandran',
-      role: 'Parent of Rockwellian',
-      rating: '5.0/5',
+      author: "S Ram Chandran",
+      role: "Parent of Rockwellian",
+      rating: "5.0/5",
     },
     {
       id: 2,
       quote:
-        'Rockwell school has a dedicated Principal and an amazing staff, which makes it one of the rare schools that truly demonstrates its motto and philosophy ‘Nurture every child’s potential’. The school not only focuses on academics, but also on extra-curricular activities to ensure the children experience a balanced education. Rockwell is like another home where the child feels secure, enjoys learning and inculcates good values.',
-      author: 'Eleanor Mansukhani',
-      role: 'Parent of Rockwellian',
-      rating: '5.0/5',
+        "Rockwell school has a dedicated Principal and an amazing staff, which makes it one of the rare schools that truly demonstrates its motto and philosophy ‘Nurture every child’s potential’. The school not only focuses on academics, but also on extra-curricular activities to ensure the children experience a balanced education. Rockwell is like another home where the child feels secure, enjoys learning and inculcates good values.",
+      author: "Eleanor Mansukhani",
+      role: "Parent of Rockwellian",
+      rating: "5.0/5",
     },
     {
       id: 3,
       quote:
-        'Really impressed with Rockwell on the emphasis they have on the all round development of a child. The infrastructure, teaching staff, focus on education, activities like sports and music helps build confidence, skills and all round personality of children. Happy my child is in Rockwell! All the best!',
-      author: 'Janardhanan',
-      role: 'Parent of Rockwellian',
-      rating: '5.0/5',
+        "Really impressed with Rockwell on the emphasis they have on the all round development of a child. The infrastructure, teaching staff, focus on education, activities like sports and music helps build confidence, skills and all round personality of children. Happy my child is in Rockwell! All the best!",
+      author: "Janardhanan",
+      role: "Parent of Rockwellian",
+      rating: "5.0/5",
     },
   ];
 
@@ -137,7 +137,7 @@ export const ParentVoices: React.FC = () => {
               // 0: Center (front), 1: Right, 2: Left (for 3 items)
               const offset = (idx - activeIndex + total) % total;
 
-              let xPos = '0%';
+              let xPos = "0%";
               let scale = 1;
               let opacity = 1;
               let zIndex = 20;
@@ -145,20 +145,20 @@ export const ParentVoices: React.FC = () => {
 
               if (offset === 0) {
                 // Front and center
-                xPos = '0%';
+                xPos = "0%";
                 scale = 1;
                 opacity = 1;
                 zIndex = 20;
                 isCenter = true;
               } else if (offset === 1) {
                 // Right card
-                xPos = '52%';
+                xPos = "52%";
                 scale = 0.88;
                 opacity = 0.55;
                 zIndex = 10;
               } else if (offset === 2) {
                 // Left card
-                xPos = '-52%';
+                xPos = "-52%";
                 scale = 0.88;
                 opacity = 0.55;
                 zIndex = 10;
@@ -182,10 +182,10 @@ export const ParentVoices: React.FC = () => {
                     duration: 0.65,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className={`absolute w-[94%] sm:w-[82%] md:w-[68%] lg:w-[62%] max-w-[660px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 bg-white border transition-shadow duration-300 ${
+                  className={`mt-8 md:mt-2 absolute w-[94%] sm:w-[82%] md:w-[68%] lg:w-[62%] max-w-[660px] rounded-2xl sm:rounded-3xl p-6 sm:p-8 bg-white border transition-shadow duration-300 ${
                     isCenter
-                      ? 'border-[#2F5D9F]/40 shadow-xl cursor-default'
-                      : 'border-slate-200/90 shadow-sm hover:opacity-80 cursor-pointer'
+                      ? "border-[#2F5D9F]/40 shadow-xl cursor-default"
+                      : "border-slate-200/90 shadow-sm hover:opacity-80 cursor-pointer"
                   }`}
                 >
                   <div className="flex flex-col h-full justify-between">
@@ -194,9 +194,14 @@ export const ParentVoices: React.FC = () => {
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-1.5">
                           {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-[#EF7D2D] text-[#EF7D2D]" />
+                            <Star
+                              key={i}
+                              className="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-[#EF7D2D] text-[#EF7D2D]"
+                            />
                           ))}
-                          <span className="ml-2 text-xs sm:text-sm font-bold text-slate-800">{item.rating}</span>
+                          <span className="ml-2 text-xs sm:text-sm font-bold text-slate-800">
+                            {item.rating}
+                          </span>
                         </div>
 
                         <div className="w-8 h-8 rounded-full bg-blue-50 text-[#2F5D9F] flex items-center justify-center">
@@ -206,14 +211,18 @@ export const ParentVoices: React.FC = () => {
 
                       {/* Testimonial Quote */}
                       <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal mb-6">
-                        "{item.quote.replace(/^["']|["']$/g, '')}"
+                        "{item.quote.replace(/^["']|["']$/g, "")}"
                       </p>
                     </div>
 
                     {/* Bottom Row: Parent Details */}
                     <div className="pt-4 border-t border-slate-100">
-                      <div className="text-sm sm:text-base font-bold text-[#292727] tracking-tight">{item.author}</div>
-                      <div className="text-xs text-slate-500 font-medium mt-0.5">{item.role}</div>
+                      <div className="text-sm sm:text-base font-bold text-[#292727] tracking-tight">
+                        {item.author}
+                      </div>
+                      <div className="text-xs text-slate-500 font-medium mt-0.5">
+                        {item.role}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -228,7 +237,9 @@ export const ParentVoices: React.FC = () => {
                 key={idx}
                 onClick={() => setActiveIndex(idx)}
                 className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeIndex === idx ? 'w-8 bg-[#2F5D9F]' : 'w-2.5 bg-slate-300 hover:bg-slate-400'
+                  activeIndex === idx
+                    ? "w-8 bg-[#2F5D9F]"
+                    : "w-2.5 bg-slate-300 hover:bg-slate-400"
                 }`}
                 aria-label={`Go to testimonial ${idx + 1}`}
               />

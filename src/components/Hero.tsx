@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 import {
   ArrowRight,
   Download,
@@ -10,19 +10,30 @@ import {
   ShieldCheck,
   MapPin,
   Clock,
-} from 'lucide-react';
-import { motion, useInView } from 'framer-motion';
-import { CurriculumLogos } from './CurriculumLogos.tsx';
-import heroCampusImage from '../assets/images/rockwell_school_hero.jpg';
-import type { ThankYouData } from './ThankYouPage.tsx';
+} from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { CurriculumLogos } from "./CurriculumLogos.tsx";
+import heroCampusImage from "../assets/images/rockwell_school_hero.jpg";
+import type { ThankYouData } from "./ThankYouPage.tsx";
+import {
+  BROCHURE_PDF_URL,
+  FEE_STRUCTURE_PDF_URL,
+  triggerPdfDownload,
+} from "../App.tsx";
 
 interface HeroProps {
   onApplyClick: () => void;
   onBrochureClick: () => void;
+  onFeeStructureClick?: () => void;
   onFormSubmit?: (data: ThankYouData) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFormSubmit }) => {
+export const Hero: React.FC<HeroProps> = ({
+  onApplyClick,
+  onBrochureClick,
+  onFeeStructureClick,
+  onFormSubmit,
+}) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(heroRef, { once: true });
 
@@ -30,22 +41,24 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
   // FORM STATE
   // =========================================================
 
-  const [studentName, setStudentName] = useState('');
-  const [parentName, setParentName] = useState('');
-  const [relationship, setRelationship] = useState('');
-  const [classApplying, setClassApplying] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-
+  const [studentName, setStudentName] = useState("");
+  const [parentName, setParentName] = useState("");
+  const [relationship, setRelationship] = useState("");
+  const [classApplying, setClassApplying] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [requestedDoc, setRequestedDoc] = useState<
+    "brochure" | "fee_structure" | "general"
+  >("general");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   // =========================================================
   // CRM API
   // =========================================================
 
-  const CRM_API_URL = 'https://crm.mediagarh.com/CRM/api/leads/create';
+  const CRM_API_URL = "https://crm.mediagarh.com/CRM/api/leads/create";
 
   /*
    * Add this to your .env file:
@@ -58,8 +71,52 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
    *
    * For a production website, a backend/proxy is safer.
    */
-  const CRM_API_KEY = 'b62d20f5cd5e82d3ee1cfe7fc85cccbbe43db37e36830923557c912602afe023';
+  const CRM_API_KEY =
+    "b62d20f5cd5e82d3ee1cfe7fc85cccbbe43db37e36830923557c912602afe023";
+  // =========================================================
+  // SCROLL TO FORM
+  // =========================================================
 
+  const scrollToForm = () => {
+    setTimeout(() => {
+      const formElement = document.getElementById("hero-admission-form");
+
+      if (formElement) {
+        formElement.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
+    }, 50);
+  };
+
+  // =========================================================
+  // BROCHURE CLICK
+  // =========================================================
+
+  const handleBrochureClick = () => {
+    // IMPORTANT:
+    // Set requested document BEFORE scrolling to form.
+    setRequestedDoc("brochure");
+
+    scrollToForm();
+
+    onBrochureClick?.();
+  };
+
+  // =========================================================
+  // FEE STRUCTURE CLICK
+  // =========================================================
+
+  const handleFeeStructureClick = () => {
+    // IMPORTANT:
+    // Set requested document BEFORE scrolling to form.
+    setRequestedDoc("fee_structure");
+
+    scrollToForm();
+
+    onFeeStructureClick?.();
+  };
   // =========================================================
   // FORM SUBMIT
   // =========================================================
@@ -67,7 +124,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setErrorMessage('');
+    setErrorMessage("");
 
     // Required field validation
     if (
@@ -78,7 +135,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
       !phone.trim() ||
       !email.trim()
     ) {
-      setErrorMessage('Please fill all required fields.');
+      setErrorMessage("Please fill all required fields.");
       return;
     }
 
@@ -91,11 +148,11 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
 
       const currentUrl = new URL(window.location.href);
 
-      const utmSource = currentUrl.searchParams.get('utm_source') || '';
+      const utmSource = currentUrl.searchParams.get("utm_source") || "";
 
-      const utmMedium = currentUrl.searchParams.get('utm_medium') || '';
+      const utmMedium = currentUrl.searchParams.get("utm_medium") || "";
 
-      const utmCampaign = currentUrl.searchParams.get('utm_campaign') || '';
+      const utmCampaign = currentUrl.searchParams.get("utm_campaign") || "";
 
       // -------------------------------------------------------
       // Split student name into first_name / last_name
@@ -103,9 +160,9 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
 
       const nameParts = studentName.trim().split(/\s+/);
 
-      const firstName = nameParts[0] || '';
+      const firstName = nameParts[0] || "";
 
-      const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
+      const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
 
       // -------------------------------------------------------
       // CRM PAYLOAD
@@ -125,49 +182,49 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
         utm_campaign: utmCampaign,
 
         landing_url: window.location.href,
-        referrer_url: document.referrer || '',
+        referrer_url: document.referrer || "",
 
         custom_fields: {
           field_field_1790418941075: {
             label: "Student's Name",
-            type: 'text',
+            type: "text",
             value: studentName.trim(),
-            map_to: 'student_full_name',
+            map_to: "student_full_name",
           },
 
           field_field_1790419079756: {
             label: "Parent's Name",
-            type: 'text',
+            type: "text",
             value: parentName.trim(),
-            map_to: 'parents_name',
+            map_to: "parents_name",
           },
 
           field_field_1790419099222: {
-            label: 'Relationship With Student',
-            type: 'select',
+            label: "Relationship With Student",
+            type: "select",
             value: relationship,
-            map_to: 'relationship_to_the_student',
+            map_to: "relationship_to_the_student",
           },
 
           field_field_1790419220157: {
-            label: 'Class Applying For',
-            type: 'select',
+            label: "Class Applying For",
+            type: "select",
             value: classApplying,
-            map_to: 'class',
+            map_to: "class",
           },
 
           field_field_1790419325944: {
-            label: 'Phone Number',
-            type: 'phone',
+            label: "Phone Number",
+            type: "phone",
             value: phone.trim(),
-            map_to: 'phone_number',
+            map_to: "phone_number",
           },
 
           field_field_1790419364239: {
-            label: 'Email Address',
-            type: 'email',
+            label: "Email Address",
+            type: "email",
             value: email.trim(),
-            map_to: 'email',
+            map_to: "email",
           },
         },
       };
@@ -177,11 +234,11 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
       // -------------------------------------------------------
 
       const response = await fetch(CRM_API_URL, {
-        method: 'POST',
+        method: "POST",
 
         headers: {
-          'Content-Type': 'application/json',
-          'X-Api-Key': CRM_API_KEY,
+          "Content-Type": "application/json",
+          "X-Api-Key": CRM_API_KEY,
         },
 
         body: JSON.stringify(payload),
@@ -195,22 +252,31 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
       } catch {
         result = null;
       }
-
+      if (requestedDoc === "fee_structure") {
+        triggerPdfDownload(
+          FEE_STRUCTURE_PDF_URL,
+          "Rockwell_Fee_Structure_2026-27.pdf",
+        );
+      } else if (requestedDoc === "brochure") {
+        triggerPdfDownload(BROCHURE_PDF_URL, "Rockwell_School_Brochure.pdf");
+      }
       // -------------------------------------------------------
       // CRM ERROR
       // -------------------------------------------------------
 
       if (!response.ok) {
-        console.error('CRM API Error:', result);
+        console.error("CRM API Error:", result);
 
-        throw new Error(result?.message || 'Unable to submit your enquiry. Please try again.');
+        throw new Error(
+          result?.message || "Unable to submit your enquiry. Please try again.",
+        );
       }
 
       // -------------------------------------------------------
       // SUCCESS
       // -------------------------------------------------------
 
-      console.log('CRM Lead Created Successfully:', result);
+      console.log("CRM Lead Created Successfully:", result);
 
       // Notify parent — this triggers ThankYouPage render in App.tsx
       if (onFormSubmit) {
@@ -227,14 +293,42 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
         setIsSubmitted(true);
       }
     } catch (error) {
-      console.error('Admission Enquiry Error:', error);
+      console.error("Admission Enquiry Error:", error);
 
-      setErrorMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again.",
+      );
 
       setLoading(false);
     }
   };
+  useEffect(() => {
+    const handleExternalFormOpen = (event: Event) => {
+      const customEvent = event as CustomEvent<{
+        document?: "brochure" | "fee_structure" | "general";
+      }>;
 
+      const documentType = customEvent.detail?.document || "general";
+
+      if (
+        documentType === "brochure" ||
+        documentType === "fee_structure" ||
+        documentType === "general"
+      ) {
+        setRequestedDoc(documentType);
+      }
+
+      scrollToForm();
+    };
+
+    window.addEventListener("open-admission-form", handleExternalFormOpen);
+
+    return () => {
+      window.removeEventListener("open-admission-form", handleExternalFormOpen);
+    };
+  }, []);
   // =========================================================
   // RETURN
   // =========================================================
@@ -302,7 +396,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
 
               <button
                 type="button"
-                onClick={onBrochureClick}
+                onClick={handleBrochureClick}
                 className="bg-[#24354c]/85 hover:bg-[#2d405b] border border-slate-400/40 text-white px-6 py-3.5 rounded-xl text-base font-medium backdrop-blur-md transition-all duration-200 active:scale-[0.98] inline-flex items-center gap-2.5 cursor-pointer shadow-sm hover:border-slate-300/60"
               >
                 <Download className="w-4 h-4 text-[#ea6a24]" />
@@ -366,7 +460,8 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
                   </h3>
 
                   <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
-                    Your admission enquiry has been received. Our admissions counselor will contact you shortly.
+                    Your admission enquiry has been received. Our admissions
+                    counselor will contact you shortly.
                   </p>
 
                   <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 text-left text-xs text-slate-600 mb-6 space-y-1.5">
@@ -406,12 +501,13 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
                       </h3>
 
                       <span className="text-[10px] font-bold uppercase tracking-wider bg-orange-100 text-[#EF7D2D] px-2.5 py-0.5 rounded-full">
-                        2026–27
+                        2027–28
                       </span>
                     </div>
 
                     <p className="text-xs text-slate-500">
-                      Book a personalized campus tour or speak with our academic counselors.
+                      Book a personalized campus tour or speak with our academic
+                      counselors.
                     </p>
                   </div>
 
@@ -502,7 +598,8 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFor
 
                     <div>
                       <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
-                        Class Applying For <span className="text-rose-500">*</span>
+                        Class Applying For{" "}
+                        <span className="text-rose-500">*</span>
                       </label>
 
                       <div className="relative">

@@ -1,7 +1,20 @@
-import React from 'react';
-import { CheckCircle2, Phone, MapPin, Clock, ArrowRight, Calendar, Mail } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { Logo } from './Logo.tsx';
+import React, { useEffect } from "react";
+import {
+  CheckCircle2,
+  Phone,
+  MapPin,
+  Clock,
+  ArrowRight,
+  Calendar,
+  Mail,
+} from "lucide-react";
+import { motion } from "framer-motion";
+import { Logo } from "./Logo.tsx";
+import {
+  triggerPdfDownload,
+  BROCHURE_PDF_URL,
+  FEE_STRUCTURE_PDF_URL,
+} from "../App.tsx";
 
 export interface ThankYouData {
   parentName: string;
@@ -10,6 +23,7 @@ export interface ThankYouData {
   email?: string;
   grade: string;
   curriculum: string;
+  requestedDoc?: "brochure" | "fee_structure" | "general";
 }
 
 interface ThankYouPageProps {
@@ -29,25 +43,54 @@ function animProps(delay = 0) {
 
 export const ThankYouPage: React.FC<ThankYouPageProps> = ({ data, onBack }) => {
   const { parentName, studentName, phone, email, grade, curriculum } = data;
-
+  const requestedDoc = data.requestedDoc || "general";
   const nextSteps = [
     {
       icon: <Phone className="w-5 h-5" />,
-      title: 'Admissions Call',
-      description: 'Our counsellor will call you within 2 business hours to walk you through the process.',
+      title: "Admissions Call",
+      description:
+        "Our counsellor will call you within 2 business hours to walk you through the process.",
     },
     {
       icon: <Calendar className="w-5 h-5" />,
-      title: 'Campus Tour',
-      description: "We'll schedule a personalised campus tour at your convenience — weekdays or Saturday mornings.",
+      title: "Campus Tour",
+      description:
+        "We'll schedule a personalised campus tour at your convenience — weekdays or Saturday mornings.",
     },
     {
       icon: <CheckCircle2 className="w-5 h-5" />,
-      title: 'Application Review',
-      description: "Submit your documents and we'll guide you through every step of the admission process.",
+      title: "Application Review",
+      description:
+        "Submit your documents and we'll guide you through every step of the admission process.",
     },
   ];
+  const getPdfDetails = () => {
+    if (requestedDoc === "fee_structure") {
+      return {
+        url: FEE_STRUCTURE_PDF_URL,
+        name: "Rockwell_Fee_Structure_2026-27.pdf",
+        label: "Fee Structure PDF",
+      };
+    }
+    return {
+      url: BROCHURE_PDF_URL,
+      name: "Rockwell_School_Brochure.pdf",
+      label: "School Brochure PDF",
+    };
+  };
 
+  useEffect(() => {
+    if (requestedDoc === "general") return; // Apply Now wale flow ke liye direct exit
+
+    const pdfDetails = getPdfDetails();
+    const downloadKey = `pdf_downloaded_${requestedDoc}`;
+    const hasDownloaded = sessionStorage.getItem(downloadKey);
+
+    if (!hasDownloaded) {
+      sessionStorage.setItem(downloadKey, "true");
+      triggerPdfDownload(pdfDetails.url, pdfDetails.name);
+    }
+  }, [requestedDoc]);
   return (
     <div className="min-h-screen bg-[#fafafc] flex flex-col">
       {/* ── Minimal Header ── */}
@@ -55,7 +98,7 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({ data, onBack }) => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <Logo variant="color" className="h-12 w-auto" />
           <span className="text-[11px] font-bold uppercase tracking-widest text-[#2F5D9F] hidden sm:block">
-            Admissions 2026–27
+            Admissions 2027–28
           </span>
         </div>
       </header>
@@ -89,12 +132,17 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({ data, onBack }) => {
                 Your admissions enquiry
                 {studentName && (
                   <>
-                    {' '}
-                    for <span className="font-semibold text-[#292727]">{studentName}</span>
+                    {" "}
+                    for{" "}
+                    <span className="font-semibold text-[#292727]">
+                      {studentName}
+                    </span>
                   </>
-                )}{' '}
-                for <span className="font-semibold text-[#2F5D9F]">{grade}</span>
-                {curriculum && <> ({curriculum})</>} has been successfully submitted. We will reach you at{' '}
+                )}{" "}
+                for{" "}
+                <span className="font-semibold text-[#2F5D9F]">{grade}</span>
+                {curriculum && <> ({curriculum})</>} has been successfully
+                submitted. We will reach you at{" "}
                 <span className="font-semibold text-[#EF7D2D]">{phone}</span>.
               </p>
 
@@ -111,14 +159,17 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({ data, onBack }) => {
                   </span>
                 )}
                 <span className="inline-flex items-center gap-1.5 text-xs font-semibold bg-[#2F5D9F]/10 text-[#2F5D9F] px-3.5 py-1.5 rounded-full">
-                  {grade} · {curriculum || 'Curriculum TBD'}
+                  {grade} · {curriculum || "Curriculum TBD"}
                 </span>
               </div>
             </div>
           </motion.div>
 
           {/* ── Campus Info + CTA ── */}
-          <motion.div {...animProps(0.3)} className="bg-[#0e203c] rounded-2xl px-6 sm:px-10 py-8 text-white">
+          <motion.div
+            {...animProps(0.3)}
+            className="bg-[#0e203c] rounded-2xl px-6 sm:px-10 py-8 text-white"
+          >
             <h2 className="text-xs font-bold uppercase tracking-widest text-[#FFA85C] mb-5 flex items-center gap-2">
               <span className="w-5 h-px bg-[#FFA85C]" />
               Rockwell International School Shamshabad
@@ -129,18 +180,24 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({ data, onBack }) => {
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#EF7D2D] shrink-0 mt-0.5" />
                 <span>
-                  D.No 15-14, KSR X Road, Kolan Estates, Near Milestone Kandakatla, Satamrai, Shamshabad, Hyderabad –
-                  501218
+                  D.No 15-14, KSR X Road, Kolan Estates, Near Milestone
+                  Kandakatla, Satamrai, Shamshabad, Hyderabad – 501218
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#EF7D2D] shrink-0" />
                 <div className="flex gap-2 font-mono">
-                  <a href="tel:+919000079992" className="hover:text-white transition-colors">
+                  <a
+                    href="tel:+919000079992"
+                    className="hover:text-white transition-colors"
+                  >
                     +91 9000079992
                   </a>
                   <span>·</span>
-                  <a href="tel:+919000079993" className="hover:text-white transition-colors">
+                  <a
+                    href="tel:+919000079993"
+                    className="hover:text-white transition-colors"
+                  >
                     +91 9000079993
                   </a>
                 </div>
@@ -171,8 +228,12 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({ data, onBack }) => {
           </motion.div>
 
           {/* ── Footer note ── */}
-          <motion.p {...animProps(0.4)} className="text-center text-xs text-slate-400 pb-4">
-            © {new Date().getFullYear()} Rockwell International School Shamshabad · Admissions Office
+          <motion.p
+            {...animProps(0.4)}
+            className="text-center text-xs text-slate-400 pb-4"
+          >
+            © {new Date().getFullYear()} Rockwell International School
+            Shamshabad · Admissions Office
           </motion.p>
         </div>
       </main>

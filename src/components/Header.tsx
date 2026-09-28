@@ -1,6 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Phone, MessageCircle, Menu, X, ArrowRight, ChevronDown } from 'lucide-react';
-import { Logo } from './Logo.tsx';
+import React, { useState, useEffect } from "react";
+import {
+  Phone,
+  MessageCircle,
+  Menu,
+  X,
+  ArrowRight,
+  ChevronDown,
+} from "lucide-react";
+import { Logo } from "./Logo.tsx";
 
 interface HeaderProps {
   onApplyClick: () => void;
@@ -9,7 +16,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeNav, setActiveNav] = useState('');
+  const [activeNav, setActiveNav] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,14 +29,14 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
 
       // Dynamic active tab highlighting based on scroll position
       const sections = [
-        { name: 'Parent Voices', id: 'parent-voices' },
-        { name: 'Campus & Facilities', id: 'campus-facilities' },
-        { name: 'Academics', id: 'academics' },
-        { name: 'About Us', id: 'why-rockwell' },
+        { name: "Parent Voices", id: "parent-voices" },
+        { name: "Campus & Facilities", id: "campus-facilities" },
+        { name: "Academics", id: "academics" },
+        { name: "About Us", id: "why-rockwell" },
       ];
 
       if (scrollPosition < 320) {
-        setActiveNav('');
+        setActiveNav("");
         return;
       }
 
@@ -45,21 +52,25 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { name: 'About Us', href: '#why-rockwell', hasDropdown: true },
-    { name: 'Academics', href: '#academics', hasDropdown: false },
-    { name: 'Campus & Facilities', href: '#campus-facilities', hasDropdown: false },
-    { name: 'Parent Voices', href: '#parent-voices', hasDropdown: false },
+    { name: "About Us", href: "#why-rockwell" },
+    { name: "Academics", href: "#academics", hasDropdown: false },
+    {
+      name: "Campus & Facilities",
+      href: "#campus-facilities",
+      hasDropdown: false,
+    },
+    { name: "Parent Voices", href: "#parent-voices", hasDropdown: false },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md transition-all duration-300 border-b border-slate-100 ${
-        isScrolled ? 'shadow-sm py-2.5' : 'shadow-xs py-3'
+        isScrolled ? "shadow-sm py-2.5" : "shadow-xs py-3"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,8 +81,14 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
             className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5D9F] rounded-lg transition-transform hover:opacity-95"
             aria-label="Rockwell International School Home"
           >
-            <div className={`transition-all duration-300 ${isScrolled ? 'h-11 sm:h-12' : 'h-12 sm:h-13'}`}>
-              <Logo variant="color" className="h-full w-auto max-w-[190px] sm:max-w-[230px]" showSubtitle={true} />
+            <div
+              className={`transition-all duration-300 ${isScrolled ? "h-11 sm:h-12" : "h-12 sm:h-13"}`}
+            >
+              <Logo
+                variant="color"
+                className="h-full w-auto max-w-[190px] sm:max-w-[230px]"
+                showSubtitle={true}
+              />
             </div>
           </a>
 
@@ -87,15 +104,17 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
                   onClick={() => setActiveNav(link.name)}
                   className={`group inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-xl sm:rounded-2xl text-[15px] sm:text-base font-bold transition-all duration-200 cursor-pointer active:scale-95 ${
                     isActive
-                      ? 'bg-[#2F5D9F] text-white shadow-sm'
-                      : 'text-slate-700 hover:bg-[#2F5D9F] hover:text-white hover:shadow-sm'
+                      ? "bg-[#2F5D9F] text-white shadow-sm"
+                      : "text-slate-700 hover:bg-[#2F5D9F] hover:text-white hover:shadow-sm"
                   }`}
                 >
                   <span>{link.name}</span>
                   {link.hasDropdown && (
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5 ${
-                        isActive ? 'text-white' : 'text-slate-400 group-hover:text-white'
+                        isActive
+                          ? "text-white"
+                          : "text-slate-400 group-hover:text-white"
                       }`}
                     />
                   )}
@@ -105,8 +124,8 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
           </nav>
 
           {/* Right: Contact & Primary Action */}
-          <div className="hidden sm:flex items-center gap-4 xl:gap-5">
-            <div className="flex items-center gap-3.5 text-xs font-semibold">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-5">
+            {/* <div className="flex items-center gap-3.5 text-xs font-semibold">
               <a
                 href="tel:+919000079992"
                 className="flex items-center gap-1.5 text-[#2F5D9F] hover:text-[#1e3b68] transition-colors"
@@ -127,7 +146,7 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
                 <MessageCircle className="w-3.5 h-3.5" />
                 <span className="hidden xl:inline">WhatsApp</span>
               </a>
-            </div>
+            </div> */}
 
             <button
               onClick={onApplyClick}
@@ -140,7 +159,7 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
 
           {/* Mobile Right Bar: Contact Icons + Menu Toggle */}
           <div className="flex lg:hidden items-center gap-2.5">
-            <a
+            {/* <a
               href="tel:+919000079992"
               className="p-2 rounded-lg text-[#2F5D9F] bg-blue-50 transition-colors"
               aria-label="Call Admissions"
@@ -156,15 +175,25 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
               aria-label="WhatsApp"
             >
               <MessageCircle className="w-4 h-4" />
-            </a>
-
+            </a> */}
+            <button
+              onClick={onApplyClick}
+              className="bg-[#EF7D2D] hover:bg-[#d96c21] text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm hover:shadow active:scale-[0.98] inline-flex items-center gap-2 whitespace-nowrap cursor-pointer"
+            >
+              <span>Apply Now</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-lg text-[#292727] bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2F5D9F]"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -186,8 +215,8 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
                   }}
                   className={`text-base font-bold py-2.5 px-3.5 rounded-xl transition-all ${
                     isActive
-                      ? 'bg-[#2F5D9F] text-white shadow-xs'
-                      : 'text-[#292727] hover:bg-slate-100 hover:text-[#2F5D9F]'
+                      ? "bg-[#2F5D9F] text-white shadow-xs"
+                      : "text-[#292727] hover:bg-slate-100 hover:text-[#2F5D9F]"
                   }`}
                 >
                   {link.name}
