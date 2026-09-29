@@ -98,34 +98,34 @@ function LandingPage() {
     setSelectedCurriculum(curriculum);
     scrollToSection("hero-admission-form");
   };
-  const downloadBrochure = async (
-    filename = "shamshabad-brochure-print.pdf",
-  ) => {
-    try {
-      const response = await fetch(BROCHURE_PDF_URL);
-      if (!response.ok) throw new Error("File fetch failed");
+  // const downloadBrochure = async (
+  //   filename = "shamshabad-brochure-print.pdf",
+  // ) => {
+  //   try {
+  //     const response = await fetch(BROCHURE_PDF_URL);
+  //     if (!response.ok) throw new Error("File fetch failed");
 
-      const blob = await response.blob();
-      const blobUrl = window.URL.createObjectURL(blob);
+  //     const blob = await response.blob();
+  //     const blobUrl = window.URL.createObjectURL(blob);
 
-      const link = document.createElement("a");
-      link.href = blobUrl;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
+  //     const link = document.createElement("a");
+  //     link.href = blobUrl;
+  //     link.download = filename;
+  //     document.body.appendChild(link);
+  //     link.click();
 
-      // Cleanup
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(blobUrl);
-    } catch (error) {
-      console.error(
-        "Direct download failed, opening in new tab instead:",
-        error,
-      );
-      // Fallback: Agar blob block ho jaye to new tab mein PDF open karein
-      window.open(BROCHURE_PDF_URL, "_blank");
-    }
-  };
+  //     // Cleanup
+  //     document.body.removeChild(link);
+  //     window.URL.revokeObjectURL(blobUrl);
+  //   } catch (error) {
+  //     console.error(
+  //       "Direct download failed, opening in new tab instead:",
+  //       error,
+  //     );
+  //     // Fallback: Agar blob block ho jaye to new tab mein PDF open karein
+  //     window.open(BROCHURE_PDF_URL, "_blank");
+  //   }
+  // };
 
   return (
     <div className="min-h-screen bg-white text-[#292727] flex flex-col font-sans selection:bg-[#2F5D9F] selection:text-white">
