@@ -11,7 +11,7 @@ import {
   MapPin,
   Clock,
 } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import { CurriculumLogos } from "./CurriculumLogos.tsx";
 import heroCampusImage from "../assets/images/rockwell_school_hero.jpg";
 import type { ThankYouData } from "./ThankYouPage.tsx";
@@ -20,7 +20,9 @@ import {
   FEE_STRUCTURE_PDF_URL,
   triggerPdfDownload,
 } from "../App.tsx";
-
+import { Logo } from "./Logo.tsx";
+import cbseLocalLogo from "../assets/images/cbse_logo.jpg";
+import heroVideo from "../assets/ROCKWELL_2.0.mp4";
 interface HeroProps {
   onApplyClick: () => void;
   onBrochureClick: () => void;
@@ -36,14 +38,8 @@ export const Hero: React.FC<HeroProps> = ({
 }) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(heroRef, { once: true });
-
-  // =========================================================
-  // FORM STATE
-  // =========================================================
-
   const [studentName, setStudentName] = useState("");
   const [parentName, setParentName] = useState("");
-  const [relationship, setRelationship] = useState("");
   const [classApplying, setClassApplying] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -53,84 +49,40 @@ export const Hero: React.FC<HeroProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
-  // =========================================================
-  // CRM API
-  // =========================================================
-
   const CRM_API_URL = "https://crm.mediagarh.com/CRM/api/leads/create";
-
-  /*
-   * Add this to your .env file:
-   *
-   * VITE_CRM_API_KEY=YOUR_API_KEY
-   *
-   * IMPORTANT:
-   * VITE_ variables are available in the browser.
-   * Therefore the API key is technically visible to users.
-   *
-   * For a production website, a backend/proxy is safer.
-   */
   const CRM_API_KEY =
     "b62d20f5cd5e82d3ee1cfe7fc85cccbbe43db37e36830923557c912602afe023";
-  // =========================================================
   // SCROLL TO FORM
-  // =========================================================
-
   const scrollToForm = () => {
-    setTimeout(() => {
-      const formElement = document.getElementById("hero-admission-form");
-
-      if (formElement) {
-        formElement.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      }
-    }, 50);
+    const formElement = document.getElementById("hero-admission-form");
+    if (formElement) {
+      formElement.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
   };
-
-  // =========================================================
   // BROCHURE CLICK
-  // =========================================================
-
   const handleBrochureClick = () => {
-    // IMPORTANT:
-    // Set requested document BEFORE scrolling to form.
     setRequestedDoc("brochure");
-
     scrollToForm();
-
     onBrochureClick?.();
   };
 
-  // =========================================================
   // FEE STRUCTURE CLICK
-  // =========================================================
-
   const handleFeeStructureClick = () => {
-    // IMPORTANT:
-    // Set requested document BEFORE scrolling to form.
     setRequestedDoc("fee_structure");
-
     scrollToForm();
-
     onFeeStructureClick?.();
   };
-  // =========================================================
   // FORM SUBMIT
-  // =========================================================
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     setErrorMessage("");
-
-    // Required field validation
     if (
       !studentName.trim() ||
       !parentName.trim() ||
-      !relationship ||
+      // !relationship ||
       !classApplying ||
       !phone.trim() ||
       !email.trim()
@@ -138,39 +90,20 @@ export const Hero: React.FC<HeroProps> = ({
       setErrorMessage("Please fill all required fields.");
       return;
     }
-
     setLoading(true);
-
     try {
-      // -------------------------------------------------------
       // Get UTM parameters from current URL
-      // -------------------------------------------------------
-
       const currentUrl = new URL(window.location.href);
-
       const utmSource = currentUrl.searchParams.get("utm_source") || "";
-
       const utmMedium = currentUrl.searchParams.get("utm_medium") || "";
-
       const utmCampaign = currentUrl.searchParams.get("utm_campaign") || "";
-
-      // -------------------------------------------------------
       // Split student name into first_name / last_name
-      // -------------------------------------------------------
-
       const nameParts = studentName.trim().split(/\s+/);
-
       const firstName = nameParts[0] || "";
-
       const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
-
-      // -------------------------------------------------------
       // CRM PAYLOAD
-      // -------------------------------------------------------
-
       const payload = {
         form_id: 42,
-
         first_name: firstName,
         last_name: lastName,
 
@@ -199,13 +132,6 @@ export const Hero: React.FC<HeroProps> = ({
             map_to: "parents_name",
           },
 
-          field_field_1790419099222: {
-            label: "Relationship With Student",
-            type: "select",
-            value: relationship,
-            map_to: "relationship_to_the_student",
-          },
-
           field_field_1790419220157: {
             label: "Class Applying For",
             type: "select",
@@ -228,19 +154,13 @@ export const Hero: React.FC<HeroProps> = ({
           },
         },
       };
-
-      // -------------------------------------------------------
       // SEND DATA TO CRM
-      // -------------------------------------------------------
-
       const response = await fetch(CRM_API_URL, {
         method: "POST",
-
         headers: {
           "Content-Type": "application/json",
           "X-Api-Key": CRM_API_KEY,
         },
-
         body: JSON.stringify(payload),
       });
 
@@ -286,7 +206,7 @@ export const Hero: React.FC<HeroProps> = ({
           phone,
           email: email || undefined,
           grade: classApplying,
-          curriculum: relationship,
+          curriculum: "",
         });
       } else {
         // Fallback: show inline success state if no callback provided
@@ -332,63 +252,103 @@ export const Hero: React.FC<HeroProps> = ({
   // =========================================================
   // RETURN
   // =========================================================
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.05,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+    },
+  };
 
   return (
     <section
       ref={heroRef}
-      className="relative min-h-[92vh] lg:min-h-screen flex items-center pt-28 pb-16 lg:py-24 overflow-hidden"
+      className="relative pt-20 sm:pt-28 pb-8 sm:pb-12 px-[20px] sm:px-6 w-full max-w-none overflow-hidden"
     >
-      {/* =====================================================
-          BACKGROUND IMAGE
-      ====================================================== */}
+      {/* Framed Cinematic Hero Container with Video Playing in the Background */}
+      <div className="relative w-full max-w-none rounded-[24px] sm:rounded-[36px] overflow-hidden border border-slate-300/80 shadow-2xl min-h-[660px] lg:min-h-[720px] flex items-center px-[20px] py-7 sm:p-10 lg:p-12 xl:p-14 bg-stone-100">
+        {/* Background Video Layer */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+          <video
+            src={heroVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
 
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroCampusImage}
-          alt="Rockwell International School Shamshabad 8.5 Acres Modern Campus"
-          className="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out"
-          referrerPolicy="no-referrer"
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0c182c]/95 via-[#0e203c]/90 to-[#0c182c]/85" />
-
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-[#1d3b6a]/40 via-transparent to-[#08111e]/85" />
-      </div>
-
-      {/* =====================================================
-          MAIN CONTAINER
-      ====================================================== */}
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* =================================================
-              LEFT COLUMN
-          ================================================== */}
-
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -24 }}
-            transition={{
-              duration: 0.7,
-              ease: [0.22, 1, 0.36, 1],
+          {/* User Overlay Gradient */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(270deg, rgba(228, 217, 209, 0.00) 0%, rgba(230, 218, 210, 0.30) 50%, #E6DAD2 100%)",
             }}
-            className="lg:col-span-7 text-left text-white"
-          >
-            {/* Main Headline */}
+          />
+        </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white uppercase leading-[1.08] mb-7 drop-shadow-sm">
+        {/* Foreground Content: Left Content & Right Admissions Form */}
+        <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+          {/* LEFT COLUMN: School Content & Branding */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="w-full max-w-none lg:col-span-7 xl:col-span-7 text-left"
+          >
+            {/* School Brand Identity Logo */}
+            <motion.div variants={itemVariants} className="mb-4 sm:mb-5">
+              <Logo
+                variant="color"
+                className="h-16 sm:h-20 lg:h-22 w-auto justify-start"
+              />
+            </motion.div>
+
+            {/* Admissions Open Live Badge */}
+            <motion.div
+              variants={itemVariants}
+              className="inline-flex items-center gap-2 mb-4 sm:mb-5"
+            >
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-[#ea6a24]" />
+                <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#162740]">
+                  Admissions Open 2027–28
+                </span>
+              </span>
+            </motion.div>
+
+            {/* Main Headline */}
+            <motion.h1
+              variants={itemVariants}
+              className="text-3xl sm:text-5xl lg:text-5xl xl:text-[54px] font-black tracking-tight text-[#162740] uppercase leading-[1.08] mb-6 sm:mb-7 drop-shadow-xs"
+            >
               NURTURING EVERY
               <br />
               CHILD’S POTENTIAL
-            </h1>
+            </motion.h1>
 
-            {/* Action Buttons */}
-
-            <div className="flex flex-wrap items-center gap-4 mb-8">
+            {/* Action Buttons: Apply Now & Download Brochure */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap items-center gap-3 sm:gap-4 mb-7 sm:mb-9"
+            >
               <button
                 type="button"
                 onClick={onApplyClick}
-                className="bg-[#ea6a24] hover:bg-[#dc5e19] text-white px-7 py-3.5 rounded-xl text-base font-bold transition-all duration-200 shadow-lg hover:shadow-orange-500/25 active:scale-[0.98] inline-flex items-center gap-2 cursor-pointer"
+                className="bg-[#ea6a24] hover:bg-[#dc5e19] active:scale-95 text-white px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl text-xs sm:text-sm font-bold shadow-md hover:shadow-orange-500/30 inline-flex items-center gap-2 transition-all cursor-pointer"
               >
                 <span>Apply Now</span>
                 <ArrowRight className="w-4 h-4" />
@@ -397,32 +357,47 @@ export const Hero: React.FC<HeroProps> = ({
               <button
                 type="button"
                 onClick={handleBrochureClick}
-                className="bg-[#24354c]/85 hover:bg-[#2d405b] border border-slate-400/40 text-white px-6 py-3.5 rounded-xl text-base font-medium backdrop-blur-md transition-all duration-200 active:scale-[0.98] inline-flex items-center gap-2.5 cursor-pointer shadow-sm hover:border-slate-300/60"
+                className="bg-white/95 hover:bg-white active:scale-95 border border-slate-200 text-[#162740] px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl text-xs sm:text-sm font-bold shadow-xs hover:shadow-sm inline-flex items-center gap-2 transition-all cursor-pointer"
               >
                 <Download className="w-4 h-4 text-[#ea6a24]" />
                 <span>Download Brochure</span>
               </button>
-            </div>
+            </motion.div>
 
-            {/* Divider */}
-
-            <div className="w-full max-w-xl border-t border-white/20 mb-6" />
-
-            {/* Curriculum */}
-
-            <div>
-              <div className="text-xs uppercase tracking-wider text-slate-300 font-semibold mb-4">
+            {/* Accredited Global Pathways Strip */}
+            <motion.div variants={itemVariants}>
+              <div className="text-[11px] sm:text-xs uppercase tracking-wider text-slate-700 font-extrabold mb-3">
                 ACCREDITED GLOBAL PATHWAYS
               </div>
+              <div className="flex items-center gap-3 sm:gap-4">
+                {/* CBSE Card */}
+                <div
+                  className="w-28 sm:w-36 h-14 sm:h-18 rounded-xl sm:rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center justify-center p-2 transition-transform hover:scale-[1.02]"
+                  title="CBSE Affiliated"
+                >
+                  <img
+                    src={cbseLocalLogo}
+                    alt="CBSE - Central Board of Secondary Education"
+                    className="max-h-10 sm:max-h-14 w-auto object-contain"
+                  />
+                </div>
 
-              <CurriculumLogos variant="dark" align="left" />
-            </div>
+                {/* Cambridge Card */}
+                <div
+                  className="w-52 sm:w-68 h-16 sm:h-20 rounded-xl sm:rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center justify-center p-1 sm:p-1.5 transition-transform hover:scale-[1.02] overflow-hidden"
+                  title="Cambridge Assessment International Education"
+                >
+                  <img
+                    src="https://getvectorlogo.com/wp-content/uploads/2019/04/cambridge-assessment-international-education-vector-logo.png"
+                    alt="Cambridge Assessment International Education"
+                    className="h-full w-full max-h-14 sm:max-h-16 object-contain scale-105"
+                  />
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
 
-          {/* =================================================
-              RIGHT COLUMN - FORM
-          ================================================== */}
-
+          {/* RIGHT COLUMN: Floating Admissions Enquiry Card */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 24 }}
@@ -563,10 +538,10 @@ export const Hero: React.FC<HeroProps> = ({
                       RELATIONSHIP + CLASS
                   ================================================== */}
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 gap-3">
                     {/* Relationship */}
 
-                    <div>
+                    {/* <div>
                       <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
                         Relationship <span className="text-rose-500">*</span>
                       </label>
@@ -592,7 +567,7 @@ export const Hero: React.FC<HeroProps> = ({
                           ▼
                         </div>
                       </div>
-                    </div>
+                    </div> */}
 
                     {/* Class Applying */}
 
@@ -746,10 +721,6 @@ export const Hero: React.FC<HeroProps> = ({
           </motion.div>
         </div>
       </div>
-
-      {/* Bottom Gradient */}
-
-      <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-t from-white to-transparent" />
     </section>
   );
 };
