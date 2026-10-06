@@ -26,7 +26,7 @@ const facilitiesData = [
       "Hands-on science learning with modern equipment that inspires curiosity, experimentation, and innovation.",
     image:
       "https://mauliarts.in/assets/images/integrated-science-lab-in-india.jpg",
-    alt: "Rockwell International School Science Laboratory",
+    alt: "cbse schools in near me",
   },
   {
     id: "library",
@@ -37,7 +37,7 @@ const facilitiesData = [
       "A well-stocked learning space that nurtures reading, research, curiosity, and independent learning.",
     image:
       "https://img.magnific.com/free-photo/cafe-frankfurt-germany_1268-20912.jpg?semt=ais_hybrid&w=740&q=80",
-    alt: "Rockwell International School Contemporary Library & Media Center",
+    alt: "best schools near me cbse",
   },
   {
     id: "computer-lab",
@@ -48,7 +48,7 @@ const facilitiesData = [
       "A technology-enabled space where students develop digital literacy, coding, research, and computational skills.",
     image:
       "https://stxaviersdhenkanal.org/wp-content/uploads/2024/07/360_F_220240507_Z8WDjgJliVAL5i41G2WjQtAVkSC066lV.jpg",
-    alt: "Rockwell International School Technology Computer Lab",
+    alt: "top cbse schools",
   },
   {
     id: "kitchen-dining",
@@ -59,7 +59,7 @@ const facilitiesData = [
       "A hygienic and comfortable dining space serving nutritious, balanced vegetarian meals for students.",
     image:
       "https://i.shgcdn.com/573981e9-e1c8-4238-8256-c632ee25203b/-/format/auto/-/preview/3000x3000/-/quality/lighter/",
-    alt: "Rockwell International School Dining Hall & Kitchen",
+    alt: "cbse schools near me",
   },
   {
     id: "staff-room",
@@ -70,7 +70,7 @@ const facilitiesData = [
       "A collaborative space that supports teacher planning, professional development, and meaningful collaboration.",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBtvuJYZCu7HYiHqXoG4r4O9FVTiwj8GLwpDRB38Cv_w&s=10",
-    alt: "Rockwell International School Teacher Planning Room",
+    alt: "best private schools in shamshabad",
   },
   {
     id: "outdoor-infrastructure",
@@ -81,7 +81,7 @@ const facilitiesData = [
       "World-class sports facilities and play areas that promote fitness, teamwork, coordination, and sportsmanship.",
     image:
       "https://rockwellshamshabad.com/wp-content/uploads/2025/03/ROCKWELL-SCHOOL-IMAGE-.jpg",
-    alt: "Rockwell International School 2.6L sq.ft Sports Facilities",
+    alt: "primary schools around me",
   },
   {
     id: "indoor-infrastructure",
@@ -92,7 +92,7 @@ const facilitiesData = [
       "Dedicated spaces for music, dance, arts, crafts, indoor sports, and activities that encourage creativity and self-expression.",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJy-6GhBdGtImealvdOeYCy_QV_73hmJjIrdDjHGZLag&s=10",
-    alt: "Rockwell International School Arts and Music Center",
+    alt: "best schools near me",
   },
   {
     id: "transport",
@@ -103,7 +103,7 @@ const facilitiesData = [
       "GPS-enabled buses with trained staff, CCTV, first-aid, and real-time tracking for safe and reliable student transportation.",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA82YIz2OHgDTOCDoCs5gqSjCvwW6jGGmJR2bMIkUxRQ&s=10",
-    alt: "Rockwell International School Safe Transport Fleet",
+    alt: "schools nearby",
   },
 ];
 
@@ -187,7 +187,7 @@ export const CampusFacilities: React.FC<CampusFacilitiesProps> = () => {
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
                     <img
                       src={item.image}
-                      alt={item.name}
+                      alt={item.alt}
                       className="w-full h-full object-cover"
                       loading="lazy"
                       referrerPolicy="no-referrer"
@@ -336,7 +336,7 @@ export const CampusFacilities: React.FC<CampusFacilitiesProps> = () => {
                   <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                     <img
                       src={selectedFacility.image}
-                      alt={selectedFacility.name}
+                      alt={selectedFacility.alt}
                       className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105"
                       referrerPolicy="no-referrer"
                     />

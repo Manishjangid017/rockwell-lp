@@ -350,22 +350,20 @@ export const ParentVoices: React.FC = () => {
               onMouseLeave={() => setIsHovered(false)}
             >
               {/* Left Quick Navigation Overlay Button */}
-              <button
+              {/* <button
                 onClick={handlePrev}
                 className="absolute left-1 sm:left-4 z-30 p-2.5 rounded-full bg-white/90 hover:bg-white text-slate-800 hover:text-[#2F5D9F] shadow-md border border-slate-200 transition-all cursor-pointer hover:scale-105 active:scale-95 hidden sm:flex items-center justify-center"
                 aria-label="Previous card"
               >
                 <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              {/* Right Quick Navigation Overlay Button */}
+              </button> 
               <button
                 onClick={handleNext}
                 className="absolute right-1 sm:right-4 z-30 p-2.5 rounded-full bg-white/90 hover:bg-white text-slate-800 hover:text-[#2F5D9F] shadow-md border border-slate-200 transition-all cursor-pointer hover:scale-105 active:scale-95 hidden sm:flex items-center justify-center"
                 aria-label="Next card"
               >
                 <ChevronRight className="w-5 h-5" />
-              </button>
+              </button> */}
 
               {/* Render all 3 cards with 3D/Cover-Flow Positioning */}
               {testimonials.map((item, idx) => {

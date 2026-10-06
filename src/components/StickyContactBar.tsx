@@ -17,7 +17,7 @@ export default function StickyContactBar({ onApplyClick }: any) {
 
         {/* WhatsApp Button */}
         <a
-          href="https://wa.me/919000079992"
+          href="https://wa.me/919000079992?text=Hi%2C%20I%E2%80%99m%20interested%20in%20admission%20at%20Rockwell%20International%20School%2C%20Shamshabad.%20Please%20share%20the%20admission%20details%20and%20connect%20me%20with%20a%20counsellor%20to%20help%20me%20with%20the%20next%20steps."
           target="_blank"
           rel="noreferrer"
           className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white text-[#25D366] hover:bg-[#25D366] hover:text-white shadow-xl hover:shadow-2xl border border-slate-200/90 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"

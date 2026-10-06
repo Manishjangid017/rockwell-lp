@@ -125,29 +125,6 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
 
           {/* Right: Contact & Primary Action */}
           <div className="hidden lg:flex items-center gap-4 xl:gap-5">
-            {/* <div className="flex items-center gap-3.5 text-xs font-semibold">
-              <a
-                href="tel:+919000079992"
-                className="flex items-center gap-1.5 text-[#2F5D9F] hover:text-[#1e3b68] transition-colors"
-                title="Call Admissions"
-              >
-                <Phone className="w-3.5 h-3.5" />
-                <span className="hidden xl:inline">+91 90000 79992</span>
-                <span className="xl:hidden">Call</span>
-              </a>
-
-              <a
-                href="https://wa.me/919000079992"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1.5 text-emerald-700 hover:text-emerald-800 transition-colors"
-                title="WhatsApp Admissions"
-              >
-                <MessageCircle className="w-3.5 h-3.5" />
-                <span className="hidden xl:inline">WhatsApp</span>
-              </a>
-            </div> */}
-
             <button
               onClick={onApplyClick}
               className="bg-[#EF7D2D] hover:bg-[#d96c21] text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm hover:shadow active:scale-[0.98] inline-flex items-center gap-2 whitespace-nowrap cursor-pointer"
@@ -159,23 +136,6 @@ export const Header: React.FC<HeaderProps> = ({ onApplyClick }) => {
 
           {/* Mobile Right Bar: Contact Icons + Menu Toggle */}
           <div className="flex lg:hidden items-center gap-2.5">
-            {/* <a
-              href="tel:+919000079992"
-              className="p-2 rounded-lg text-[#2F5D9F] bg-blue-50 transition-colors"
-              aria-label="Call Admissions"
-            >
-              <Phone className="w-4 h-4" />
-            </a>
-
-            <a
-              href="https://wa.me/919000079992"
-              target="_blank"
-              rel="noreferrer"
-              className="p-2 rounded-lg text-emerald-600 bg-emerald-50 transition-colors"
-              aria-label="WhatsApp"
-            >
-              <MessageCircle className="w-4 h-4" />
-            </a> */}
             <button
               onClick={onApplyClick}
               className="bg-[#EF7D2D] hover:bg-[#d96c21] text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm hover:shadow active:scale-[0.98] inline-flex items-center gap-2 whitespace-nowrap cursor-pointer"

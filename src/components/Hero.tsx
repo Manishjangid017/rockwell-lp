@@ -377,7 +377,7 @@ export const Hero: React.FC<HeroProps> = ({
                 >
                   <img
                     src={cbseLocalLogo}
-                    alt="CBSE - Central Board of Secondary Education"
+                    alt="rockwell international schools"
                     className="max-h-10 sm:max-h-14 w-auto object-contain"
                   />
                 </div>
@@ -389,7 +389,7 @@ export const Hero: React.FC<HeroProps> = ({
                 >
                   <img
                     src="https://getvectorlogo.com/wp-content/uploads/2019/04/cambridge-assessment-international-education-vector-logo.png"
-                    alt="Cambridge Assessment International Education"
+                    alt="rockwell shamshabad"
                     className="h-full w-full max-h-14 sm:max-h-16 object-contain scale-105"
                   />
                 </div>
@@ -410,7 +410,7 @@ export const Hero: React.FC<HeroProps> = ({
           >
             <div
               id="hero-admission-form"
-              className="bg-white text-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100/90 relative overflow-hidden"
+              className="bg-white text-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100/90 relative overflow-hidden max-w-[460px] m-auto"
             >
               {/* Top Accent */}
 

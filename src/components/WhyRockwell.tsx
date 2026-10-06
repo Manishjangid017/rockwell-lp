@@ -1,43 +1,43 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
-import whyRockwell1 from '../assets/images/why_rockwell_1.jpg';
-import whyRockwell2 from '../assets/images/why_rockwell_2.jpg';
-import whyRockwell3 from '../assets/images/why_rockwell_3.jpg';
-import whyRockwell4 from '../assets/images/why_rockwell_4.jpg';
+import whyRockwell1 from "../assets/images/why_rockwell_1.jpg";
+import whyRockwell2 from "../assets/images/why_rockwell_2.jpg";
+import whyRockwell3 from "../assets/images/why_rockwell_3.jpg";
+import whyRockwell4 from "../assets/images/why_rockwell_4.jpg";
 
 export const WhyRockwell: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-50px 0px' });
+  const isInView = useInView(sectionRef, { once: true, margin: "-50px 0px" });
 
   const features = [
     {
-      title: 'Student Growth',
+      title: "Student Growth",
       description:
-        'At RIS, we focus on overall student growth, which goes much beyond the textbooks. We encourage our kids to learn from the environment, to think, and to explore creativity within themselves.',
+        "At RIS, we focus on overall student growth, which goes much beyond the textbooks. We encourage our kids to learn from the environment, to think, and to explore creativity within themselves.",
       image: whyRockwell1,
-      alt: 'Rockwell International School Student Growth and Collaborative Learning',
+      alt: "cambridge schools",
     },
     {
-      title: 'Focus on Targets',
+      title: "Focus on Targets",
       description:
-        'Learning is never confined to the classrooms. Children learn from each other and from various different activities. Our campus encourages learning from sports, activities, and performing arts, ensuring that kids develop holistically.',
+        "Learning is never confined to the classrooms. Children learn from each other and from various different activities. Our campus encourages learning from sports, activities, and performing arts, ensuring that kids develop holistically.",
       image: whyRockwell2,
-      alt: 'Rockwell Students Sports and Performing Arts Training',
+      alt: "cambridge curriculum schools in hyderabad",
     },
     {
-      title: 'Best Learning Practices',
+      title: "Best Learning Practices",
       description:
-        'We have created a learning environment that fosters various learning methodologies. From projects to experiments to field visits, we work on bringing lessons to life so that kids learn from experience.',
+        "We have created a learning environment that fosters various learning methodologies. From projects to experiments to field visits, we work on bringing lessons to life so that kids learn from experience.",
       image: whyRockwell3,
-      alt: 'Hands-on Experiments and Experiential Science Practices',
+      alt: "cambridge schools near me",
     },
     {
-      title: 'Interdisciplinary Model',
+      title: "Interdisciplinary Model",
       description:
-        'We combine various fields of study and lessons in order to fortify creativity, analytical thinking, expression, and inquisitiveness. This model nurtures children to grow up to be thinkers, dreamers, and doers',
+        "We combine various fields of study and lessons in order to fortify creativity, analytical thinking, expression, and inquisitiveness. This model nurtures children to grow up to be thinkers, dreamers, and doers",
       image: whyRockwell4,
-      alt: 'Interdisciplinary Creative and Analytical Learning Model',
+      alt: "best private cbse schools in shamshabad",
     },
   ];
 
@@ -76,7 +76,7 @@ export const WhyRockwell: React.FC = () => {
               <div
                 key={item.title}
                 style={{
-                  top: '96px',
+                  top: "96px",
                   zIndex: zIndex,
                 }}
                 className="sticky w-full bg-[#2F5D9F] text-white rounded-[26px] sm:rounded-[32px] p-6 sm:p-8 lg:p-10 shadow-[0_-12px_36px_rgba(0,0,0,0.28)] shadow-2xl border border-[#254b82] transition-all duration-200"

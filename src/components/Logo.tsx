@@ -23,7 +23,7 @@ export const Logo: React.FC<LogoProps> = ({
     >
       <img
         src={logoSrc}
-        alt="Rockwell International School Shamshabad Logo"
+        alt="rockwell international"
         className="w-full h-full object-contain"
         loading="eager"
       />
