@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Logo } from './Logo.tsx';
 
@@ -20,19 +20,15 @@ export const CMSPageHeader: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
           {/* Left: Brand Logo */}
-          <a
-            href="/"
+          <Link
+            to="/"
             className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5D9F] rounded-lg transition-transform hover:opacity-95"
             aria-label="Rockwell International School Home"
           >
             <div className="h-11 sm:h-12 transition-all duration-300">
-              <Logo
-                variant="color"
-                className="h-full w-auto max-w-[190px] sm:max-w-[230px]"
-                showSubtitle={true}
-              />
+              <Logo variant="color" className="h-full w-auto max-w-[190px] sm:max-w-[230px]" showSubtitle={true} />
             </div>
-          </a>
+          </Link>
 
           {/* Right: Apply for Admission Button */}
           <button

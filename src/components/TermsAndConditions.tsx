@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { CMSPageHeader } from './CMSPageHeader.tsx';
 
 const Section: React.FC<{ number: string; title: string; children: React.ReactNode }> = ({
@@ -15,9 +16,11 @@ const Section: React.FC<{ number: string; title: string; children: React.ReactNo
 );
 
 export const TermsAndConditions: React.FC = () => {
+  const location = useLocation();
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, []);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-white text-[#292727] font-sans">
@@ -218,9 +221,9 @@ export const TermsAndConditions: React.FC = () => {
           </p>
           <p>Please review the Privacy Policy before submitting personal information through any website form.</p>
           <p>
-            <a href="/privacy-policy" className="text-[#2F5D9F] hover:underline font-medium">
+            <Link to="/privacy-policy" className="text-[#2F5D9F] hover:underline font-medium">
               Privacy Policy – Rockwell International School, Shamshabad
-            </a>
+            </Link>
           </p>
         </Section>
 
@@ -251,8 +254,8 @@ export const TermsAndConditions: React.FC = () => {
             <p className="font-bold text-neutral-800 text-base">Rockwell International School, Shamshabad</p>
             <p>
               <span className="font-semibold">Email:</span>{' '}
-              <a href="mailto:admission@rockwellshamshabad.com" className="text-[#2F5D9F] hover:underline">
-                admission@rockwellshamshabad.com
+              <a href="mailto:info@rockwellshamshabad.com" className="text-[#2F5D9F] hover:underline">
+                info@rockwellshamshabad.com
               </a>
             </p>
             <p>
@@ -283,9 +286,9 @@ export const TermsAndConditions: React.FC = () => {
         <div className="mt-12 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-neutral-500">
           <span>© {new Date().getFullYear()} Rockwell International School Shamshabad. All rights reserved.</span>
           <div className="flex items-center gap-4">
-            <a href="/privacy-policy" className="text-[#2F5D9F] hover:underline">
+            <Link to="/privacy-policy" className="text-[#2F5D9F] hover:underline">
               Privacy Policy
-            </a>
+            </Link>
             <span>·</span>
             <button
               onClick={() => {

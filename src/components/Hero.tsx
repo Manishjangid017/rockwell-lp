@@ -286,7 +286,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                 </div>
 
                 {/* Primary school name */}
-                <p className="text-[14px] sm:text-xs font-extrabold uppercase tracking-[0.22em] text-[#EF7D2D] leading-none mb-1">
+                <p className="text-[14px] sm:text-[16px] font-extrabold uppercase tracking-[0.22em] text-[#EF7D2D] leading-none mb-1">
                   Rockwell{' '}
                   <span className="font-black uppercase tracking-tight leading-[1.0] text-[#162740]">
                     International School{' '}

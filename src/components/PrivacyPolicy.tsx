@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { CMSPageHeader } from './CMSPageHeader.tsx';
 
 const Section: React.FC<{ number: string; title: string; children: React.ReactNode }> = ({
@@ -17,10 +17,11 @@ const Section: React.FC<{ number: string; title: string; children: React.ReactNo
 
 export const PrivacyPolicy: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, []);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-white text-[#292727] font-sans">
@@ -319,8 +320,8 @@ export const PrivacyPolicy: React.FC = () => {
             <p className="font-bold text-neutral-800 text-base">Rockwell International School, Shamshabad</p>
             <p>
               <span className="font-semibold">Email:</span>{' '}
-              <a href="mailto:admission@rockwellshamshabad.com" className="text-[#2F5D9F] hover:underline">
-                admission@rockwellshamshabad.com
+              <a href="mailto:info@rockwellshamshabad.com" className="text-[#2F5D9F] hover:underline">
+                info@rockwellshamshabad.com
               </a>
             </p>
             <p>

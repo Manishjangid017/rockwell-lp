@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from './Logo.tsx';
-import { Phone, MapPin, Clock, ArrowUp } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, ArrowUp } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -82,6 +82,12 @@ export const Footer: React.FC = () => {
                     +91 9000079993
                   </a>
                 </div>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-[#EF7D2D] shrink-0" />
+                <a href="mailto:admission@rockwellshamshabad.com" className="hover:text-white transition-colors">
+                  admission@rockwellshamshabad.com
+                </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Clock className="w-4 h-4 text-[#EF7D2D] shrink-0" />
