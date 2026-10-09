@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from 'react';
 import {
   ArrowRight,
   Download,
@@ -10,19 +10,14 @@ import {
   ShieldCheck,
   MapPin,
   Clock,
-} from "lucide-react";
-import { motion, useInView, type Variants } from "framer-motion";
-import { CurriculumLogos } from "./CurriculumLogos.tsx";
-import heroCampusImage from "../assets/images/rockwell_school_hero.jpg";
-import type { ThankYouData } from "./ThankYouPage.tsx";
-import {
-  BROCHURE_PDF_URL,
-  FEE_STRUCTURE_PDF_URL,
-  triggerPdfDownload,
-} from "../App.tsx";
-import { Logo } from "./Logo.tsx";
-import cbseLocalLogo from "../assets/images/cbse_logo.jpg";
-import heroVideo from "../assets/ROCKWELL_2.0.mp4";
+} from 'lucide-react';
+import { motion, useInView, type Variants } from 'framer-motion';
+import { CurriculumLogos } from './CurriculumLogos.tsx';
+import heroCampusImage from '../assets/images/rockwell_school_hero.jpg';
+import type { ThankYouData } from './ThankYouPage.tsx';
+import { BROCHURE_PDF_URL, FEE_STRUCTURE_PDF_URL, triggerPdfDownload } from '../App.tsx';
+import cbseLocalLogo from '../assets/images/cbse_logo.jpg';
+import heroVideo from '../assets/ROCKWELL_2.0.mp4';
 interface HeroProps {
   onApplyClick: () => void;
   onBrochureClick: () => void;
@@ -30,55 +25,47 @@ interface HeroProps {
   onFormSubmit?: (data: ThankYouData) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({
-  onApplyClick,
-  onBrochureClick,
-  onFeeStructureClick,
-  onFormSubmit,
-}) => {
+export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFeeStructureClick, onFormSubmit }) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(heroRef, { once: true });
-  const [studentName, setStudentName] = useState("");
-  const [parentName, setParentName] = useState("");
-  const [classApplying, setClassApplying] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [requestedDoc, setRequestedDoc] = useState<
-    "brochure" | "fee_structure" | "general"
-  >("general");
+  const [studentName, setStudentName] = useState('');
+  const [parentName, setParentName] = useState('');
+  const [classApplying, setClassApplying] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [requestedDoc, setRequestedDoc] = useState<'brochure' | 'fee_structure' | 'general'>('general');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const CRM_API_URL = "https://crm.mediagarh.com/CRM/api/leads/create";
-  const CRM_API_KEY =
-    "b62d20f5cd5e82d3ee1cfe7fc85cccbbe43db37e36830923557c912602afe023";
+  const [errorMessage, setErrorMessage] = useState('');
+  const CRM_API_URL = 'https://crm.mediagarh.com/CRM/api/leads/create';
+  const CRM_API_KEY = 'b62d20f5cd5e82d3ee1cfe7fc85cccbbe43db37e36830923557c912602afe023';
   // SCROLL TO FORM
   const scrollToForm = () => {
-    const formElement = document.getElementById("hero-admission-form");
+    const formElement = document.getElementById('hero-admission-form');
     if (formElement) {
       formElement.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
+        behavior: 'smooth',
+        block: 'center',
       });
     }
   };
   // BROCHURE CLICK
   const handleBrochureClick = () => {
-    setRequestedDoc("brochure");
+    setRequestedDoc('brochure');
     scrollToForm();
     onBrochureClick?.();
   };
 
   // FEE STRUCTURE CLICK
   const handleFeeStructureClick = () => {
-    setRequestedDoc("fee_structure");
+    setRequestedDoc('fee_structure');
     scrollToForm();
     onFeeStructureClick?.();
   };
   // FORM SUBMIT
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setErrorMessage("");
+    setErrorMessage('');
     if (
       !studentName.trim() ||
       !parentName.trim() ||
@@ -87,20 +74,20 @@ export const Hero: React.FC<HeroProps> = ({
       !phone.trim() ||
       !email.trim()
     ) {
-      setErrorMessage("Please fill all required fields.");
+      setErrorMessage('Please fill all required fields.');
       return;
     }
     setLoading(true);
     try {
       // Get UTM parameters from current URL
       const currentUrl = new URL(window.location.href);
-      const utmSource = currentUrl.searchParams.get("utm_source") || "";
-      const utmMedium = currentUrl.searchParams.get("utm_medium") || "";
-      const utmCampaign = currentUrl.searchParams.get("utm_campaign") || "";
+      const utmSource = currentUrl.searchParams.get('utm_source') || '';
+      const utmMedium = currentUrl.searchParams.get('utm_medium') || '';
+      const utmCampaign = currentUrl.searchParams.get('utm_campaign') || '';
       // Split student name into first_name / last_name
       const nameParts = studentName.trim().split(/\s+/);
-      const firstName = nameParts[0] || "";
-      const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
       // CRM PAYLOAD
       const payload = {
         form_id: 42,
@@ -115,51 +102,51 @@ export const Hero: React.FC<HeroProps> = ({
         utm_campaign: utmCampaign,
 
         landing_url: window.location.href,
-        referrer_url: document.referrer || "",
+        referrer_url: document.referrer || '',
 
         custom_fields: {
           field_field_1790418941075: {
             label: "Student's Name",
-            type: "text",
+            type: 'text',
             value: studentName.trim(),
-            map_to: "student_full_name",
+            map_to: 'student_full_name',
           },
 
           field_field_1790419079756: {
             label: "Parent's Name",
-            type: "text",
+            type: 'text',
             value: parentName.trim(),
-            map_to: "parents_name",
+            map_to: 'parents_name',
           },
 
           field_field_1790419220157: {
-            label: "Class Applying For",
-            type: "select",
+            label: 'Class Applying For',
+            type: 'select',
             value: classApplying,
-            map_to: "class",
+            map_to: 'class',
           },
 
           field_field_1790419325944: {
-            label: "Phone Number",
-            type: "phone",
+            label: 'Phone Number',
+            type: 'phone',
             value: phone.trim(),
-            map_to: "phone_number",
+            map_to: 'phone_number',
           },
 
           field_field_1790419364239: {
-            label: "Email Address",
-            type: "email",
+            label: 'Email Address',
+            type: 'email',
             value: email.trim(),
-            map_to: "email",
+            map_to: 'email',
           },
         },
       };
       // SEND DATA TO CRM
       const response = await fetch(CRM_API_URL, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          "X-Api-Key": CRM_API_KEY,
+          'Content-Type': 'application/json',
+          'X-Api-Key': CRM_API_KEY,
         },
         body: JSON.stringify(payload),
       });
@@ -172,31 +159,26 @@ export const Hero: React.FC<HeroProps> = ({
       } catch {
         result = null;
       }
-      if (requestedDoc === "fee_structure") {
-        triggerPdfDownload(
-          FEE_STRUCTURE_PDF_URL,
-          "Rockwell_Fee_Structure_2026-27.pdf",
-        );
-      } else if (requestedDoc === "brochure") {
-        triggerPdfDownload(BROCHURE_PDF_URL, "Rockwell_School_Brochure.pdf");
+      if (requestedDoc === 'fee_structure') {
+        triggerPdfDownload(FEE_STRUCTURE_PDF_URL, 'Rockwell_Fee_Structure_2026-27.pdf');
+      } else if (requestedDoc === 'brochure') {
+        triggerPdfDownload(BROCHURE_PDF_URL, 'Rockwell_School_Brochure.pdf');
       }
       // -------------------------------------------------------
       // CRM ERROR
       // -------------------------------------------------------
 
       if (!response.ok) {
-        console.error("CRM API Error:", result);
+        console.error('CRM API Error:', result);
 
-        throw new Error(
-          result?.message || "Unable to submit your enquiry. Please try again.",
-        );
+        throw new Error(result?.message || 'Unable to submit your enquiry. Please try again.');
       }
 
       // -------------------------------------------------------
       // SUCCESS
       // -------------------------------------------------------
 
-      console.log("CRM Lead Created Successfully:", result);
+      console.log('CRM Lead Created Successfully:', result);
 
       // Notify parent — this triggers ThankYouPage render in App.tsx
       if (onFormSubmit) {
@@ -206,20 +188,16 @@ export const Hero: React.FC<HeroProps> = ({
           phone,
           email: email || undefined,
           grade: classApplying,
-          curriculum: "",
+          curriculum: '',
         });
       } else {
         // Fallback: show inline success state if no callback provided
         setIsSubmitted(true);
       }
     } catch (error) {
-      console.error("Admission Enquiry Error:", error);
+      console.error('Admission Enquiry Error:', error);
 
-      setErrorMessage(
-        error instanceof Error
-          ? error.message
-          : "Something went wrong. Please try again.",
-      );
+      setErrorMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
 
       setLoading(false);
     }
@@ -227,26 +205,22 @@ export const Hero: React.FC<HeroProps> = ({
   useEffect(() => {
     const handleExternalFormOpen = (event: Event) => {
       const customEvent = event as CustomEvent<{
-        document?: "brochure" | "fee_structure" | "general";
+        document?: 'brochure' | 'fee_structure' | 'general';
       }>;
 
-      const documentType = customEvent.detail?.document || "general";
+      const documentType = customEvent.detail?.document || 'general';
 
-      if (
-        documentType === "brochure" ||
-        documentType === "fee_structure" ||
-        documentType === "general"
-      ) {
+      if (documentType === 'brochure' || documentType === 'fee_structure' || documentType === 'general') {
         setRequestedDoc(documentType);
       }
 
       scrollToForm();
     };
 
-    window.addEventListener("open-admission-form", handleExternalFormOpen);
+    window.addEventListener('open-admission-form', handleExternalFormOpen);
 
     return () => {
-      window.removeEventListener("open-admission-form", handleExternalFormOpen);
+      window.removeEventListener('open-admission-form', handleExternalFormOpen);
     };
   }, []);
   // =========================================================
@@ -281,21 +255,14 @@ export const Hero: React.FC<HeroProps> = ({
       <div className="relative w-full max-w-none rounded-[24px] sm:rounded-[36px] overflow-hidden border border-slate-300/80 shadow-2xl min-h-[660px] lg:min-h-[720px] flex items-center px-[20px] py-7 sm:p-10 lg:p-12 xl:p-14 bg-stone-100">
         {/* Background Video Layer */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-          <video
-            src={heroVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          />
+          <video src={heroVideo} autoPlay loop muted playsInline className="w-full h-full object-cover" />
 
           {/* User Overlay Gradient */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "linear-gradient(270deg, rgba(228, 217, 209, 0.00) 0%, rgba(230, 218, 210, 0.30) 50%, #E6DAD2 100%)",
+                'linear-gradient(270deg, rgba(228, 217, 209, 0.00) 0%, rgba(230, 218, 210, 0.30) 50%, #E6DAD2 100%)',
             }}
           />
         </div>
@@ -306,22 +273,43 @@ export const Hero: React.FC<HeroProps> = ({
           <motion.div
             variants={containerVariants}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            animate={isInView ? 'visible' : 'hidden'}
             className="w-full max-w-none lg:col-span-7 xl:col-span-7 text-left"
           >
-            {/* School Brand Identity Logo */}
+            {/* School Brand Identity — Text Wordmark */}
             <motion.div variants={itemVariants} className="mb-4 sm:mb-5">
-              <Logo
-                variant="color"
-                className="h-16 sm:h-20 lg:h-22 w-auto justify-start"
-              />
+              <div className="flex flex-col gap-0.5 select-none">
+                {/* Top rule */}
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-8 h-[3px] rounded-full bg-[#EF7D2D]" />
+                  <span className="w-3 h-[3px] rounded-full bg-[#2F5D9F]" />
+                </div>
+
+                {/* Primary school name */}
+                <p className="text-[14px] sm:text-xs font-extrabold uppercase tracking-[0.22em] text-[#EF7D2D] leading-none mb-1">
+                  Rockwell{' '}
+                  <span className="font-black uppercase tracking-tight leading-[1.0] text-[#162740]">
+                    International School{' '}
+                  </span>
+                </p>
+                {/* Location line */}
+                <div className="flex items-center gap-1.5 mt-1.5">
+                  <svg className="w-3 h-3 text-[#EF7D2D] shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fillRule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-[#4a5568]">
+                    Shamshabad, Hyderabad
+                  </span>
+                </div>
+              </div>
             </motion.div>
 
             {/* Admissions Open Live Badge */}
-            <motion.div
-              variants={itemVariants}
-              className="inline-flex items-center gap-2 mb-4 sm:mb-5"
-            >
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 mb-4 sm:mb-5">
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-[#ea6a24]" />
                 <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#162740]">
@@ -341,10 +329,7 @@ export const Hero: React.FC<HeroProps> = ({
             </motion.h1>
 
             {/* Action Buttons: Apply Now & Download Brochure */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap items-center gap-3 sm:gap-4 mb-7 sm:mb-9"
-            >
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3 sm:gap-4 mb-7 sm:mb-9">
               <button
                 type="button"
                 onClick={onApplyClick}
@@ -435,8 +420,7 @@ export const Hero: React.FC<HeroProps> = ({
                   </h3>
 
                   <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
-                    Your admission enquiry has been received. Our admissions
-                    counselor will contact you shortly.
+                    Your admission enquiry has been received. Our admissions counselor will contact you shortly.
                   </p>
 
                   <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 text-left text-xs text-slate-600 mb-6 space-y-1.5">
@@ -481,8 +465,7 @@ export const Hero: React.FC<HeroProps> = ({
                     </div>
 
                     <p className="text-xs text-slate-500">
-                      Book a personalized campus tour or speak with our academic
-                      counselors.
+                      Book a personalized campus tour or speak with our academic counselors.
                     </p>
                   </div>
 
@@ -573,8 +556,7 @@ export const Hero: React.FC<HeroProps> = ({
 
                     <div>
                       <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
-                        Class Applying For{" "}
-                        <span className="text-rose-500">*</span>
+                        Class Applying For <span className="text-rose-500">*</span>
                       </label>
 
                       <div className="relative">

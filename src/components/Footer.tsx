@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Logo } from './Logo.tsx';
-import { Phone, Mail, MapPin, Clock, ArrowUp } from 'lucide-react';
+import { Phone, MapPin, Clock, ArrowUp } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -14,22 +15,17 @@ export const Footer: React.FC = () => {
           {/* Brand Column */}
           <div className="lg:col-span-4 space-y-4">
             <a href="#" className="inline-block" aria-label="Rockwell International School">
-              <Logo
-                variant="white"
-                className="w-48 sm:w-56 h-auto"
-                showSubtitle={true}
-              />
+              <Logo variant="white" className="w-48 sm:w-56 h-auto" showSubtitle={true} />
             </a>
             <p className="text-xs text-neutral-400 leading-relaxed max-w-sm">
-              Nurturing every child’s potential through internationally acclaimed CBSE and Cambridge pathways in an inspiring 8.5-acre modern campus.
+              Nurturing every child’s potential through internationally acclaimed CBSE and Cambridge pathways in an
+              inspiring 8.5-acre modern campus.
             </p>
           </div>
 
           {/* Quick Navigation Links */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-[#FFA85C]">
-              Quick Links
-            </h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-[#FFA85C]">Quick Links</h4>
             <ul className="space-y-2.5 text-sm text-neutral-300">
               <li>
                 <a href="#why-rockwell" className="hover:text-white transition-colors">
@@ -66,14 +62,13 @@ export const Footer: React.FC = () => {
 
           {/* Contact Information */}
           <div className="lg:col-span-5 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-[#FFA85C]">
-              Contact Information
-            </h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-[#FFA85C]">Contact Information</h4>
             <div className="space-y-3 text-xs text-neutral-300">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#EF7D2D] shrink-0 mt-0.5" />
                 <span>
-                  D.No 15-14, KSR X Road, Kolan Estates, Near Milestone Kandakatla, Satamrai, Shamshabad, Hyderabad, Telangana - 501218
+                  D.No 15-14, KSR X Road, Kolan Estates, Near Milestone Kandakatla, Satamrai, Shamshabad, Hyderabad,
+                  Telangana - 501218
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
@@ -91,7 +86,8 @@ export const Footer: React.FC = () => {
               <div className="flex items-center gap-2.5">
                 <Clock className="w-4 h-4 text-[#EF7D2D] shrink-0" />
                 <div>
-                  <span className="font-semibold text-neutral-200">Office:</span> Mon–Fri: 09:00 am – 5:00 pm, Sat: 09:00 am – 1:00 pm
+                  <span className="font-semibold text-neutral-200">Office:</span> Mon–Fri: 09:00 am – 5:00 pm, Sat:
+                  09:00 am – 1:00 pm
                 </div>
               </div>
               <div className="flex items-center gap-2.5 text-neutral-400">
@@ -106,12 +102,18 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-400 gap-4">
-          <div>
-            © {new Date().getFullYear()} Rockwell International School Shamshabad. All rights reserved.
-          </div>
+          <div>© {new Date().getFullYear()} Rockwell International School Shamshabad. All rights reserved.</div>
 
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <span>Design and developed by Mediagarh</span>
+            <span>·</span>
+            <Link to="/privacy-policy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <span>·</span>
+            <Link to="/terms-and-conditions" className="hover:text-white transition-colors">
+              Terms &amp; Conditions
+            </Link>
             <span>·</span>
             <button
               onClick={scrollToTop}

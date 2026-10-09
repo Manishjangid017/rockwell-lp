@@ -1,51 +1,45 @@
-import React, { useState } from "react";
-import {
-  Routes,
-  Route,
-  useNavigate,
-  useLocation,
-  Navigate,
-} from "react-router-dom";
-import { Header } from "./components/Header.tsx";
-import { Hero } from "./components/Hero.tsx";
-import { TrustBar } from "./components/TrustBar.tsx";
-import { WhyRockwell } from "./components/WhyRockwell.tsx";
-import { Academics } from "./components/Academics.tsx";
-import { AcademicCounsellingCTA } from "./components/AcademicCounsellingCTA.tsx";
-import { CampusFacilities } from "./components/CampusFacilities.tsx";
-import { ParentVoices } from "./components/ParentVoices.tsx";
-import { FAQ } from "./components/FAQ.tsx";
-import { LocationTransport } from "./components/LocationTransport.tsx";
-import { Footer } from "./components/Footer.tsx";
-import { CampusTourModal } from "./components/CampusTourModal.tsx";
-import { ThankYouPage, type ThankYouData } from "./components/ThankYouPage.tsx";
-import StickyContactBar from "./components/StickyContactBar.tsx";
+import React, { useState } from 'react';
+import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
+import { Header } from './components/Header.tsx';
+import { Hero } from './components/Hero.tsx';
+import { TrustBar } from './components/TrustBar.tsx';
+import { WhyRockwell } from './components/WhyRockwell.tsx';
+import { Academics } from './components/Academics.tsx';
+import { AcademicCounsellingCTA } from './components/AcademicCounsellingCTA.tsx';
+import { CampusFacilities } from './components/CampusFacilities.tsx';
+import { ParentVoices } from './components/ParentVoices.tsx';
+import { FAQ } from './components/FAQ.tsx';
+import { LocationTransport } from './components/LocationTransport.tsx';
+import { Footer } from './components/Footer.tsx';
+import { CampusTourModal } from './components/CampusTourModal.tsx';
+import { ThankYouPage, type ThankYouData } from './components/ThankYouPage.tsx';
+import StickyContactBar from './components/StickyContactBar.tsx';
+import { PrivacyPolicy } from './components/PrivacyPolicy.tsx';
+import { TermsAndConditions } from './components/TermsAndConditions.tsx';
 
-export const FEE_STRUCTURE_PDF_URL = "/Fee-Structure-2026-27.pdf"; // Aapki fee structure PDF ka path
-export const BROCHURE_PDF_URL = "/shamshabad-brochure-print-1.pdf";
-const SESSION_KEY = "riss_ty_data";
+export const FEE_STRUCTURE_PDF_URL = '/Fee-Structure-2026-27.pdf'; // Aapki fee structure PDF ka path
+export const BROCHURE_PDF_URL = '/shamshabad-brochure-print-1.pdf';
+const SESSION_KEY = 'riss_ty_data';
 export const triggerPdfDownload = (fileUrl: string, fileName: string) => {
   try {
-    const link = document.createElement("a");
+    const link = document.createElement('a');
     link.href = fileUrl;
     link.download = fileName;
-    link.target = "_blank";
+    link.target = '_blank';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   } catch (error) {
-    console.error("Direct download failed, opening in new tab:", error);
-    window.open(fileUrl, "_blank");
+    console.error('Direct download failed, opening in new tab:', error);
+    window.open(fileUrl, '_blank');
   }
 };
 // ── Landing Page ──────────────────────────────────────────────────────────────
 function LandingPage() {
   const navigate = useNavigate();
   const [isTourOpen, setIsTourOpen] = useState(false);
-  const [, setSelectedCurriculum] = useState("");
-  const [requestedDoc, setRequestedDoc] = useState<
-    "brochure" | "fee_structure" | "general"
-  >("general");
+  const [, setSelectedCurriculum] = useState('');
+  const [requestedDoc, setRequestedDoc] = useState<'brochure' | 'fee_structure' | 'general'>('general');
   // LandingPage component ke andar:
   // const handleFormSubmit = (data: ThankYouData) => {
   //   const submitData: ThankYouData = {
@@ -59,31 +53,31 @@ function LandingPage() {
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleApplyClick = () => {
-    setRequestedDoc("general");
-    scrollToSection("hero-admission-form");
+    setRequestedDoc('general');
+    scrollToSection('hero-admission-form');
   };
   const handleBrochureClick = () => {
-    setRequestedDoc("brochure");
-    scrollToSection("hero-admission-form");
+    setRequestedDoc('brochure');
+    scrollToSection('hero-admission-form');
   };
 
   const handleFeeStructureClick = () => {
     window.dispatchEvent(
-      new CustomEvent("open-admission-form", {
+      new CustomEvent('open-admission-form', {
         detail: {
-          document: "fee_structure",
+          document: 'fee_structure',
         },
       }),
     );
-    scrollToSection("hero-admission-form");
+    scrollToSection('hero-admission-form');
   };
 
   const handleFormSubmit = (data: ThankYouData) => {
-    sessionStorage.removeItem("pdf_download_triggered");
+    sessionStorage.removeItem('pdf_download_triggered');
 
     const submitData: ThankYouData = {
       ...data,
@@ -91,12 +85,12 @@ function LandingPage() {
     };
 
     sessionStorage.setItem(SESSION_KEY, JSON.stringify(submitData));
-    navigate("/thank-you", { state: { data: submitData } });
+    navigate('/thank-you', { state: { data: submitData } });
   };
 
   const handleCurriculumSelect = (curriculum: string) => {
     setSelectedCurriculum(curriculum);
-    scrollToSection("hero-admission-form");
+    scrollToSection('hero-admission-form');
   };
   // const downloadBrochure = async (
   //   filename = "shamshabad-brochure-print.pdf",
@@ -131,19 +125,14 @@ function LandingPage() {
     <div className="min-h-screen bg-white text-[#292727] flex flex-col font-sans selection:bg-[#2F5D9F] selection:text-white">
       <Header onApplyClick={handleApplyClick} />
       <main className="flex-grow">
-        <Hero
-          onApplyClick={handleApplyClick}
-          onBrochureClick={handleBrochureClick}
-          onFormSubmit={handleFormSubmit}
-        />
+        <Hero onApplyClick={handleApplyClick} onBrochureClick={handleBrochureClick} onFormSubmit={handleFormSubmit} />
         <TrustBar />
         <WhyRockwell />
         <Academics onApplyForCurriculum={handleCurriculumSelect} />
         <AcademicCounsellingCTA onCounsellorClick={handleApplyClick} />
         <CampusFacilities onOpenVirtualTour={() => setIsTourOpen(true)} />
         <ParentVoices />
-        <FAQ onFeeStructureClick={handleFeeStructureClick} />{" "}
-        <LocationTransport />
+        <FAQ onFeeStructureClick={handleFeeStructureClick} /> <LocationTransport />
       </main>
 
       <Footer />
@@ -151,7 +140,7 @@ function LandingPage() {
       <CampusTourModal
         isOpen={isTourOpen}
         onClose={() => setIsTourOpen(false)}
-        onBookVisit={() => scrollToSection("hero-admission-form")}
+        onBookVisit={() => scrollToSection('hero-admission-form')}
       />
     </div>
   );
@@ -184,7 +173,7 @@ function ThankYouRoute() {
 
   const handleBack = () => {
     sessionStorage.removeItem(SESSION_KEY);
-    navigate("/");
+    navigate('/');
   };
 
   return <ThankYouPage data={data} onBack={handleBack} />;
@@ -196,6 +185,8 @@ export default function App() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/thank-you" element={<ThankYouRoute />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
     </Routes>
   );
 }
