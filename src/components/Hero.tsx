@@ -655,8 +655,8 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                       htmlFor="consent-checkbox"
                       className="text-[11px] text-slate-500 leading-relaxed cursor-pointer"
                     >
-                      I authorize BSM and its representatives to contact me with updates and notifications via
-                      Email/SMS/WhatsApp/Call.{' '}
+                      I authorize Rockwell International School and its representatives to contact me with updates and
+                      notifications via Email/SMS/WhatsApp/Call.{' '}
                     </label>
                   </div>
 
