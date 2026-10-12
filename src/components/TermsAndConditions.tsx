@@ -254,8 +254,8 @@ export const TermsAndConditions: React.FC = () => {
             <p className="font-bold text-neutral-800 text-base">Rockwell International School, Shamshabad</p>
             <p>
               <span className="font-semibold">Email:</span>{' '}
-              <a href="mailto:info@rockwellshamshabad.com" className="text-[#2F5D9F] hover:underline">
-                info@rockwellshamshabad.com
+              <a href="mailto:info@rockwellinternationalschool.com" className="text-[#2F5D9F] hover:underline">
+                info@rockwellinternationalschool.com
               </a>
             </p>
             <p>

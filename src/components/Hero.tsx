@@ -17,6 +17,7 @@ import heroCampusImage from '../assets/images/rockwell_school_hero.jpg';
 import type { ThankYouData } from './ThankYouPage.tsx';
 import { BROCHURE_PDF_URL, FEE_STRUCTURE_PDF_URL, triggerPdfDownload } from '../App.tsx';
 import cbseLocalLogo from '../assets/images/cbse_logo.jpg';
+import cambridgeLocalLogo from '../assets/images/cambridge_logo.svg';
 import heroVideo from '../assets/ROCKWELL_2.0.mp4';
 interface HeroProps {
   onApplyClick: () => void;
@@ -37,6 +38,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [consentChecked, setConsentChecked] = useState(false);
   const CRM_API_URL = 'https://crm.mediagarh.com/CRM/api/leads/create';
   const CRM_API_KEY = 'b62d20f5cd5e82d3ee1cfe7fc85cccbbe43db37e36830923557c912602afe023';
   // SCROLL TO FORM
@@ -351,32 +353,34 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
 
             {/* Accredited Global Pathways Strip */}
             <motion.div variants={itemVariants}>
-              <div className="text-[11px] sm:text-xs uppercase tracking-wider text-slate-700 font-extrabold mb-3">
+              <div className="text-[11px] sm:text-xs uppercase tracking-wider text-slate-500 font-bold mb-3 flex items-center gap-2">
+                <span className="w-4 h-px bg-slate-400/60" />
                 ACCREDITED GLOBAL PATHWAYS
+                <span className="w-4 h-px bg-slate-400/60" />
               </div>
-              <div className="flex items-center gap-3 sm:gap-4">
-                {/* CBSE Card */}
-                <div
-                  className="w-28 sm:w-36 h-14 sm:h-18 rounded-xl sm:rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center justify-center p-2 transition-transform hover:scale-[1.02]"
-                  title="CBSE Affiliated"
-                >
-                  <img
-                    src={cbseLocalLogo}
-                    alt="rockwell international schools"
-                    className="max-h-10 sm:max-h-14 w-auto object-contain"
-                  />
+
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-2">
+                {/* CBSE Badge */}
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-slate-200/80 shadow-xs hover:shadow-sm transition-shadow">
+                  <div className="flex flex-col leading-tight">
+                    <span className="text-[10px] font-black uppercase tracking-wide text-[#162740]">
+                      CBSE Affiliated
+                    </span>
+                    <span className="text-[9px] font-semibold text-slate-500 tracking-wide">Affil. No.: 3630152</span>
+                  </div>
                 </div>
 
-                {/* Cambridge Card */}
-                <div
-                  className="w-52 sm:w-68 h-16 sm:h-20 rounded-xl sm:rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center justify-center p-1 sm:p-1.5 transition-transform hover:scale-[1.02] overflow-hidden"
-                  title="Cambridge Assessment International Education"
-                >
-                  <img
-                    src="https://getvectorlogo.com/wp-content/uploads/2019/04/cambridge-assessment-international-education-vector-logo.png"
-                    alt="rockwell shamshabad"
-                    className="h-full w-full max-h-14 sm:max-h-16 object-contain scale-105"
-                  />
+                {/* Divider dot */}
+                <span className="text-slate-300 text-lg font-thin select-none hidden sm:block">·</span>
+
+                {/* Cambridge Badge */}
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-slate-200/80 shadow-xs hover:shadow-sm transition-shadow">
+                  <div className="flex flex-col leading-tight">
+                    <span className="text-[10px] font-black uppercase tracking-wide text-[#162740]">
+                      Cambridge Int'l
+                    </span>
+                    <span className="text-[9px] font-semibold text-slate-500 tracking-wide">Centre No.: IN716</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -458,10 +462,6 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                       <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
                         Admissions Enquiry
                       </h3>
-
-                      <span className="text-[10px] font-bold uppercase tracking-wider bg-orange-100 text-[#EF7D2D] px-2.5 py-0.5 rounded-full">
-                        2027–28
-                      </span>
                     </div>
 
                     <p className="text-xs text-slate-500">
@@ -492,10 +492,6 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                       />
                     </div>
                   </div>
-
-                  {/* =================================================
-                      PARENT NAME
-                  ================================================== */}
 
                   <div>
                     <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
@@ -644,6 +640,27 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                   </div>
 
                   {/* =================================================
+                      CONSENT CHECKBOX
+                  ================================================== */}
+
+                  <div className="flex items-start gap-2.5">
+                    <input
+                      type="checkbox"
+                      id="consent-checkbox"
+                      checked={consentChecked}
+                      onChange={(e) => setConsentChecked(e.target.checked)}
+                      className="mt-0.5 w-4 h-4 shrink-0 rounded border-slate-300 accent-[#2F5D9F] cursor-pointer"
+                    />
+                    <label
+                      htmlFor="consent-checkbox"
+                      className="text-[11px] text-slate-500 leading-relaxed cursor-pointer"
+                    >
+                      I authorize BSM and its representatives to contact me with updates and notifications via
+                      Email/SMS/WhatsApp/Call.{' '}
+                    </label>
+                  </div>
+
+                  {/* =================================================
                       ERROR MESSAGE
                   ================================================== */}
 
@@ -660,8 +677,8 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                   <div className="pt-2">
                     <button
                       type="submit"
-                      disabled={loading}
-                      className="w-full bg-[#EF7D2D] hover:bg-[#df6e1f] text-white py-3 px-5 rounded-xl text-sm font-bold transition-all shadow-md hover:shadow-orange-500/20 active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+                      disabled={loading || !consentChecked}
+                      className="w-full bg-[#EF7D2D] hover:bg-[#df6e1f] text-white py-3 px-5 rounded-xl text-sm font-bold transition-all shadow-md hover:shadow-orange-500/20 active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {loading ? (
                         <span className="inline-flex items-center gap-2">
@@ -677,28 +694,35 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                       )}
                     </button>
                   </div>
-
-                  {/* =================================================
-                      TRUST BADGES
-                  ================================================== */}
-
-                  <div className="flex items-center justify-between pt-1 text-[11px] text-slate-500">
-                    <div className="flex items-center gap-1">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-
-                      <span>Zero application fee</span>
-                    </div>
-
-                    <span>•</span>
-
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-[#2F5D9F]" />
-
-                      <span>Instant callback</span>
-                    </div>
-                  </div>
                 </form>
               )}
+              <div className="flex mt-2 items-center justify-between pt-1 text-[11px] text-slate-500">
+                <div className="flex items-center gap-1">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+
+                  <span>
+                    <a
+                      href="/privacy-policy"
+                      className="underline underline-offset-2 hover:text-[#2F5D9F] transition-colors"
+                    >
+                      Privacy Policy
+                    </a>
+                  </span>
+                </div>
+                <span>•</span>
+                <div className="flex items-center gap-1">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+
+                  <span>
+                    <a
+                      href="/terms-and-conditions"
+                      className="underline underline-offset-2 hover:text-[#2F5D9F] transition-colors"
+                    >
+                      T&amp;C
+                    </a>
+                  </span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
