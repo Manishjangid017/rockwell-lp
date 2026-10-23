@@ -141,7 +141,7 @@ export const FAQ: React.FC<FAQProps> = ({ onFeeStructureClick }) => {
       q: "08. What grades are currently open for admission?",
       content: (
         <p className="text-sm text-slate-600 leading-relaxed">
-          Admissions are currently open for Grade 1 to Grade 7.
+          Admissions are currently open for LKG - Grade VI
         </p>
       ),
     },

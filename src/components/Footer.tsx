@@ -49,7 +49,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="#admissions" className="hover:text-white transition-colors">
-                  Admissions (Grade 1–7)
+                  Admissions (LKG - Grade VI)
                 </a>
               </li>
               <li>

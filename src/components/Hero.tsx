@@ -315,7 +315,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-[#ea6a24]" />
                 <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#162740]">
-                  Admissions Open 2027–28
+                  Admissions Open
                 </span>
               </span>
             </motion.div>
@@ -408,119 +408,73 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
               {/* =================================================
                   SUCCESS STATE
               ================================================== */}
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Form Header */}
 
-              {isSubmitted ? (
-                <div className="text-center py-6">
-                  <div className="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3.5 border border-emerald-200">
-                    <CheckCircle2 className="w-8 h-8" />
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+                      Admissions Enquiry
+                    </h3>
                   </div>
 
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100/80 px-3 py-1 rounded-full">
-                    Enquiry Received
-                  </span>
-
-                  <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-3 mb-2">
-                    Thank You, {parentName}!
-                  </h3>
-
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
-                    Your admission enquiry has been received. Our admissions counselor will contact you shortly.
+                  <p className="text-xs text-slate-500">
+                    Book a personalized campus tour or speak with our academic counselors.
                   </p>
-
-                  <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 text-left text-xs text-slate-600 mb-6 space-y-1.5">
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-3.5 h-3.5 text-[#2F5D9F] shrink-0" />
-
-                      <span>Response time: Under 2 business hours</span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-3.5 h-3.5 text-[#EF7D2D] shrink-0" />
-
-                      <span>KSR X Road, Satamrai, Shamshabad Campus</span>
-                    </div>
-                  </div>
-
-                  <a
-                    href="tel:+919121261208"
-                    className="w-full py-2.5 rounded-xl bg-[#2F5D9F] hover:bg-[#254b82] text-white text-xs font-bold transition-colors inline-flex items-center justify-center gap-2"
-                  >
-                    <Phone className="w-3.5 h-3.5" />
-                    <span>Call Admissions Desk Now</span>
-                  </a>
                 </div>
-              ) : (
-                /* =================================================
-                   FORM
-                ================================================== */
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  {/* Form Header */}
-
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
-                        Admissions Enquiry
-                      </h3>
-                    </div>
-
-                    <p className="text-xs text-slate-500">
-                      Book a personalized campus tour or speak with our academic counselors.
-                    </p>
-                  </div>
-
-                  {/* =================================================
+                {/* =================================================
                       STUDENT NAME
                   ================================================== */}
 
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
-                      Student Name <span className="text-rose-500">*</span>
-                    </label>
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
+                    Student Name <span className="text-rose-500">*</span>
+                  </label>
 
-                    <div className="relative">
-                      <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <div className="relative">
+                    <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
 
-                      <input
-                        type="text"
-                        name="studentName"
-                        required
-                        value={studentName}
-                        onChange={(e) => setStudentName(e.target.value)}
-                        placeholder="e.g. Aarav Sharma"
-                        className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-[#2F5D9F] focus:ring-3 focus:ring-[#2F5D9F]/10 transition-all"
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      name="studentName"
+                      required
+                      value={studentName}
+                      onChange={(e) => setStudentName(e.target.value)}
+                      placeholder="e.g. Aarav Sharma"
+                      className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-[#2F5D9F] focus:ring-3 focus:ring-[#2F5D9F]/10 transition-all"
+                    />
                   </div>
+                </div>
 
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
-                      Parent's Name <span className="text-rose-500">*</span>
-                    </label>
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
+                    Parent's Name <span className="text-rose-500">*</span>
+                  </label>
 
-                    <div className="relative">
-                      <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <div className="relative">
+                    <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
 
-                      <input
-                        type="text"
-                        name="parentName"
-                        required
-                        value={parentName}
-                        onChange={(e) => setParentName(e.target.value)}
-                        placeholder="e.g. Rajesh Kumar"
-                        className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-[#2F5D9F] focus:ring-3 focus:ring-[#2F5D9F]/10 transition-all"
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      name="parentName"
+                      required
+                      value={parentName}
+                      onChange={(e) => setParentName(e.target.value)}
+                      placeholder="e.g. Rajesh Kumar"
+                      className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-[#2F5D9F] focus:ring-3 focus:ring-[#2F5D9F]/10 transition-all"
+                    />
                   </div>
+                </div>
 
-                  {/* =================================================
+                {/* =================================================
                       RELATIONSHIP + CLASS
                   ================================================== */}
 
-                  <div className="grid grid-cols-1 gap-3">
-                    {/* Relationship */}
+                <div className="grid grid-cols-1 gap-3">
+                  {/* Relationship */}
 
-                    {/* <div>
+                  {/* <div>
                       <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
                         Relationship <span className="text-rose-500">*</span>
                       </label>
@@ -548,158 +502,156 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                       </div>
                     </div> */}
 
-                    {/* Class Applying */}
+                  {/* Class Applying */}
 
-                    <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
-                        Class Applying For <span className="text-rose-500">*</span>
-                      </label>
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
+                      Class Applying For <span className="text-rose-500">*</span>
+                    </label>
 
-                      <div className="relative">
-                        <GraduationCap className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <div className="relative">
+                      <GraduationCap className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
 
-                        <select
-                          name="classApplying"
-                          required
-                          value={classApplying}
-                          onChange={(e) => setClassApplying(e.target.value)}
-                          className="w-full pl-8 pr-6 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-[#2F5D9F] focus:ring-3 focus:ring-[#2F5D9F]/10 transition-all appearance-none cursor-pointer"
-                        >
-                          <option value="">Select Class</option>
+                      <select
+                        name="classApplying"
+                        required
+                        value={classApplying}
+                        onChange={(e) => setClassApplying(e.target.value)}
+                        className="w-full pl-8 pr-6 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-[#2F5D9F] focus:ring-3 focus:ring-[#2F5D9F]/10 transition-all appearance-none cursor-pointer"
+                      >
+                        <option value="">Select Class</option>
 
-                          <option value="LKG">LKG</option>
+                        <option value="LKG">LKG</option>
 
-                          <option value="UKG">UKG</option>
+                        <option value="UKG">UKG</option>
 
-                          <option value="Grade 1">Grade 1</option>
+                        <option value="Grade 1">Grade 1</option>
 
-                          <option value="Grade II">Grade II</option>
+                        <option value="Grade II">Grade II</option>
 
-                          <option value="Grade III">Grade III</option>
+                        <option value="Grade III">Grade III</option>
 
-                          <option value="Grade IV">Grade IV</option>
+                        <option value="Grade IV">Grade IV</option>
 
-                          <option value="Grade V">Grade V</option>
+                        <option value="Grade V">Grade V</option>
 
-                          <option value="Grade VI">Grade VI</option>
-                        </select>
+                        <option value="Grade VI">Grade VI</option>
+                      </select>
 
-                        <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px]">
-                          ▼
-                        </div>
+                      <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px]">
+                        ▼
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  {/* =================================================
+                {/* =================================================
                       PHONE
                   ================================================== */}
 
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
-                      Phone Number <span className="text-rose-500">*</span>
-                    </label>
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
+                    Phone Number <span className="text-rose-500">*</span>
+                  </label>
 
-                    <div className="relative">
-                      <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <div className="relative">
+                    <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
 
-                      <input
-                        type="tel"
-                        name="phone"
-                        required
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        placeholder="+91 98765 43210"
-                        className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-[#2F5D9F] focus:ring-3 focus:ring-[#2F5D9F]/10 transition-all"
-                      />
-                    </div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="+91 98765 43210"
+                      className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-[#2F5D9F] focus:ring-3 focus:ring-[#2F5D9F]/10 transition-all"
+                    />
                   </div>
+                </div>
 
-                  {/* =================================================
+                {/* =================================================
                       EMAIL
                   ================================================== */}
 
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
-                      Email Address <span className="text-rose-500">*</span>
-                    </label>
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
+                    Email Address <span className="text-rose-500">*</span>
+                  </label>
 
-                    <div className="relative">
-                      <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <div className="relative">
+                    <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
 
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="parent@example.com"
-                        className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-[#2F5D9F] focus:ring-3 focus:ring-[#2F5D9F]/10 transition-all"
-                      />
-                    </div>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="parent@example.com"
+                      className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-[#2F5D9F] focus:ring-3 focus:ring-[#2F5D9F]/10 transition-all"
+                    />
                   </div>
+                </div>
 
-                  {/* =================================================
+                {/* =================================================
                       CONSENT CHECKBOX
                   ================================================== */}
 
-                  <div className="flex items-start gap-2.5">
-                    <input
-                      type="checkbox"
-                      id="consent-checkbox"
-                      checked={consentChecked}
-                      onChange={(e) => setConsentChecked(e.target.checked)}
-                      className="mt-0.5 w-4 h-4 shrink-0 rounded border-slate-300 accent-[#2F5D9F] cursor-pointer"
-                    />
-                    <label
-                      htmlFor="consent-checkbox"
-                      className="text-[11px] text-slate-500 leading-relaxed cursor-pointer"
-                    >
-                      I authorize Rockwell International School and its representatives to contact me with updates and
-                      notifications via Email/SMS/WhatsApp/Call.{' '}
-                    </label>
-                  </div>
+                <div className="flex items-start gap-2.5">
+                  <input
+                    type="checkbox"
+                    id="consent-checkbox"
+                    checked={consentChecked}
+                    onChange={(e) => setConsentChecked(e.target.checked)}
+                    className="mt-0.5 w-4 h-4 shrink-0 rounded border-slate-300 accent-[#2F5D9F] cursor-pointer"
+                  />
+                  <label
+                    htmlFor="consent-checkbox"
+                    className="text-[11px] text-slate-500 leading-relaxed cursor-pointer"
+                  >
+                    I authorize Rockwell International School and its representatives to contact me with updates and
+                    notifications via Email/SMS/WhatsApp/Call.{' '}
+                  </label>
+                </div>
 
-                  {/* =================================================
+                {/* =================================================
                       ERROR MESSAGE
                   ================================================== */}
 
-                  {errorMessage && (
-                    <div className="rounded-xl bg-rose-50 border border-rose-200 px-3.5 py-2.5 text-xs text-rose-600">
-                      {errorMessage}
-                    </div>
-                  )}
+                {errorMessage && (
+                  <div className="rounded-xl bg-rose-50 border border-rose-200 px-3.5 py-2.5 text-xs text-rose-600">
+                    {errorMessage}
+                  </div>
+                )}
 
-                  {/* =================================================
+                {/* =================================================
                       SUBMIT BUTTON
                   ================================================== */}
 
-                  <div className="pt-2">
-                    <button
-                      type="submit"
-                      disabled={loading || !consentChecked}
-                      className="w-full bg-[#EF7D2D] hover:bg-[#df6e1f] text-white py-3 px-5 rounded-xl text-sm font-bold transition-all shadow-md hover:shadow-orange-500/20 active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {loading ? (
-                        <span className="inline-flex items-center gap-2">
-                          <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-                          Submitting Enquiry...
-                        </span>
-                      ) : (
-                        <>
-                          <span>Book Campus Tour & Enquiry</span>
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    disabled={loading || !consentChecked}
+                    className="w-full bg-[#EF7D2D] hover:bg-[#df6e1f] text-white py-3 px-5 rounded-xl text-sm font-bold transition-all shadow-md hover:shadow-orange-500/20 active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {loading ? (
+                      <span className="inline-flex items-center gap-2">
+                        <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                        Submitting Enquiry...
+                      </span>
+                    ) : (
+                      <>
+                        <span>Book Campus Tour & Enquiry</span>
 
-                          <ArrowRight className="w-4 h-4" />
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </form>
-              )}
+                        <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
               <div className="flex mt-2 items-center justify-between pt-1 text-[11px] text-slate-500">
                 <div className="flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-
                   <span>
                     <a
                       href="/privacy-policy"

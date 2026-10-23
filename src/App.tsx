@@ -128,7 +128,6 @@ function LandingPage() {
         <Hero onApplyClick={handleApplyClick} onBrochureClick={handleBrochureClick} onFormSubmit={handleFormSubmit} />
         <TrustBar />
         <WhyRockwell />
-        <Academics onApplyForCurriculum={handleCurriculumSelect} />
         <AcademicCounsellingCTA onCounsellorClick={handleApplyClick} />
         <CampusFacilities onOpenVirtualTour={() => setIsTourOpen(true)} />
         <ParentVoices />
