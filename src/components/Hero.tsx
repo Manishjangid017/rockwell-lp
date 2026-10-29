@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import {
   ArrowRight,
   Download,
@@ -29,6 +29,10 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFeeStructureClick, onFormSubmit }) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(heroRef, { once: true });
+
+  const DEFAULT_HEADLINE = "NURTURING EVERY CHILD'S POTENTIAL";
+  const utmKeyword = new URLSearchParams(window.location.search).get('utm_keyword');
+  const headline = utmKeyword ? decodeURIComponent(utmKeyword).toUpperCase() : DEFAULT_HEADLINE;
   const [studentName, setStudentName] = useState('');
   const [parentName, setParentName] = useState('');
   const [classApplying, setClassApplying] = useState('');
@@ -182,7 +186,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
 
       console.log('CRM Lead Created Successfully:', result);
 
-      // Notify parent — this triggers ThankYouPage render in App.tsx
+      // Notify parent â€” this triggers ThankYouPage render in App.tsx
       if (onFormSubmit) {
         onFormSubmit({
           parentName,
@@ -278,7 +282,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
             animate={isInView ? 'visible' : 'hidden'}
             className="w-full max-w-none lg:col-span-7 xl:col-span-7 text-left"
           >
-            {/* School Brand Identity — Text Wordmark */}
+            {/* School Brand Identity â€” Text Wordmark */}
             <motion.div variants={itemVariants} className="mb-4 sm:mb-5">
               <div className="flex flex-col gap-0.5 select-none">
                 {/* Top rule */}
@@ -323,11 +327,9 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
             {/* Main Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-3xl sm:text-5xl lg:text-5xl xl:text-[54px] font-black tracking-tight text-[#162740] uppercase leading-[1.08] mb-6 sm:mb-7 drop-shadow-xs"
+              className="text-3xl sm:text-5xl lg:text-5xl xl:text-[54px] max-w-[490px] font-black tracking-tight text-[#162740] uppercase leading-[1.08] mb-6 sm:mb-7 drop-shadow-xs"
             >
-              NURTURING EVERY
-              <br />
-              CHILD’S POTENTIAL
+              {headline}
             </motion.h1>
 
             {/* Action Buttons: Apply Now & Download Brochure */}
@@ -349,40 +351,6 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                 <Download className="w-4 h-4 text-[#ea6a24]" />
                 <span>Download Brochure</span>
               </button>
-            </motion.div>
-
-            {/* Accredited Global Pathways Strip */}
-            <motion.div variants={itemVariants}>
-              <div className="text-[11px] sm:text-xs uppercase tracking-wider text-slate-500 font-bold mb-3 flex items-center gap-2">
-                <span className="w-4 h-px bg-slate-400/60" />
-                ACCREDITED GLOBAL PATHWAYS
-                <span className="w-4 h-px bg-slate-400/60" />
-              </div>
-
-              <div className="flex flex-wrap items-center gap-2.5 sm:gap-2">
-                {/* CBSE Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-slate-200/80 shadow-xs hover:shadow-sm transition-shadow">
-                  <div className="flex flex-col leading-tight">
-                    <span className="text-[10px] font-black uppercase tracking-wide text-[#162740]">
-                      CBSE Affiliated
-                    </span>
-                    <span className="text-[9px] font-semibold text-slate-500 tracking-wide">Affil. No.: 3630152</span>
-                  </div>
-                </div>
-
-                {/* Divider dot */}
-                <span className="text-slate-300 text-lg font-thin select-none hidden sm:block">·</span>
-
-                {/* Cambridge Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-slate-200/80 shadow-xs hover:shadow-sm transition-shadow">
-                  <div className="flex flex-col leading-tight">
-                    <span className="text-[10px] font-black uppercase tracking-wide text-[#162740]">
-                      Cambridge Int'l
-                    </span>
-                    <span className="text-[9px] font-semibold text-slate-500 tracking-wide">Centre No.: IN716</span>
-                  </div>
-                </div>
-              </div>
             </motion.div>
           </motion.div>
 
@@ -497,7 +465,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                         </select>
 
                         <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px]">
-                          ▼
+                          â–¼
                         </div>
                       </div>
                     </div> */}
@@ -539,7 +507,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                       </select>
 
                       <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px]">
-                        ▼
+                        â–¼
                       </div>
                     </div>
                   </div>
@@ -661,7 +629,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                     </a>
                   </span>
                 </div>
-                <span>•</span>
+                <span>â€¢</span>
                 <div className="flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
 

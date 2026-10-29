@@ -1,18 +1,10 @@
-import React, { useRef } from "react";
-import {
-  MapPin,
-  Phone,
-  Clock,
-  Calendar,
-  Navigation,
-  Bus,
-  ShieldCheck,
-} from "lucide-react";
-import { motion, useInView, type Variants } from "framer-motion";
+import React, { useRef } from 'react';
+import { MapPin, Phone, Clock, Calendar, Navigation, Bus, ShieldCheck } from 'lucide-react';
+import { motion, useInView, type Variants } from 'framer-motion';
 
 export const LocationTransport: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-60px 0px" });
+  const isInView = useInView(sectionRef, { once: true, margin: '-60px 0px' });
 
   const headerContainerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -98,7 +90,7 @@ export const LocationTransport: React.FC = () => {
         <motion.div
           variants={headerContainerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView ? 'visible' : 'hidden'}
           className="max-w-3xl mb-14"
         >
           <motion.div
@@ -114,13 +106,9 @@ export const LocationTransport: React.FC = () => {
           >
             Location & Contact
           </motion.h2>
-          <motion.p
-            variants={descVariants}
-            className="text-base text-slate-600 font-normal leading-relaxed"
-          >
-            Conveniently situated in Shamshabad with seamless access to South
-            Hyderabad, Gachibowli, Financial District, and Airport Road via
-            designated transport zones.
+          <motion.p variants={descVariants} className="text-base text-slate-600 font-normal leading-relaxed">
+            Conveniently situated in Shamshabad with seamless access to South Hyderabad, Gachibowli, Financial District,
+            and Airport Road via designated transport zones.
           </motion.p>
         </motion.div>
 
@@ -128,7 +116,7 @@ export const LocationTransport: React.FC = () => {
         <motion.div
           variants={gridContainerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView ? 'visible' : 'hidden'}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch"
         >
           {/* 1. Campus Address & Contact */}
@@ -143,36 +131,30 @@ export const LocationTransport: React.FC = () => {
                 <span>Campus Location</span>
               </div>
 
-              <div className="text-lg font-bold text-[#292727] mb-1">
-                Rockwell International School
-              </div>
-              <div className="text-xs text-[#2F5D9F] font-semibold mb-3">
-                Shamshabad Campus · Hyderabad
-              </div>
+              <div className="text-lg font-bold text-[#292727] mb-1">Rockwell International School</div>
+              <div className="text-xs text-[#2F5D9F] font-semibold mb-3">Shamshabad Campus · Hyderabad</div>
               <p className="text-sm text-slate-600 leading-relaxed mb-4">
-                D.No 15-14, KSR X Road, Kolan Estates, Near Milestone
-                Kandakatla, Satamrai, Shamshabad, Hyderabad, Telangana - 501218
+                D.No 15-14, KSR X Road, Kolan Estates, Near Milestone Kandakatla, Satamrai, Shamshabad, Hyderabad,
+                Telangana - 501218
               </p>
             </div>
 
             <div className="pt-4 border-t border-slate-100">
-              <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
-                Admissions Helpline
-              </div>
+              <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Admissions Helpline</div>
               <div className="flex flex-col gap-2">
                 <a
                   href="tel:+919000079992"
                   className="inline-flex items-center gap-2 text-sm font-bold text-[#2F5D9F] hover:text-[#1d3d6b] transition-colors"
                 >
                   <Phone className="w-4 h-4 text-[#EF7D2D]" />
-                  <span>+91 9000079992</span>
+                  <span>+919000079992</span>
                 </a>
                 <a
                   href="tel:+919000079993"
                   className="inline-flex items-center gap-2 text-sm font-bold text-[#2F5D9F] hover:text-[#1d3d6b] transition-colors"
                 >
                   <Phone className="w-4 h-4 text-[#EF7D2D]" />
-                  <span>+91 9000079993</span>
+                  <span>+919000079993</span>
                 </a>
               </div>
             </div>
@@ -199,15 +181,11 @@ export const LocationTransport: React.FC = () => {
                   <div className="space-y-1 text-xs text-slate-600 font-medium">
                     <div className="flex justify-between">
                       <span>Mon–Fri:</span>
-                      <span className="font-semibold text-slate-900">
-                        09:00 am – 5:00 pm
-                      </span>
+                      <span className="font-semibold text-slate-900">09:00 am – 5:00 pm</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Saturday:</span>
-                      <span className="font-semibold text-slate-900">
-                        09:00 am – 1:00 pm
-                      </span>
+                      <span className="font-semibold text-slate-900">09:00 am – 1:00 pm</span>
                     </div>
                   </div>
                 </div>
@@ -220,9 +198,7 @@ export const LocationTransport: React.FC = () => {
                   <div className="space-y-1 text-xs text-slate-600 font-medium">
                     <div className="flex justify-between">
                       <span>Mon–Sat:</span>
-                      <span className="font-semibold text-slate-900">
-                        08:30 am – 3:30 pm
-                      </span>
+                      <span className="font-semibold text-slate-900">08:30 am – 3:30 pm</span>
                     </div>
                   </div>
                 </div>
@@ -231,9 +207,7 @@ export const LocationTransport: React.FC = () => {
 
             <div className="pt-4 border-t border-slate-100 text-xs text-slate-500 flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>
-                Campus tours available during office hours by prior appointment.
-              </span>
+              <span>Campus tours available during office hours by prior appointment.</span>
             </div>
           </motion.div>
 
@@ -249,38 +223,31 @@ export const LocationTransport: React.FC = () => {
                 <span>Transport Network</span>
               </div>
 
-              <div className="text-lg font-bold text-[#292727] mb-1">
-                Direct Transport Service
-              </div>
-              <div className="text-xs text-emerald-700 font-semibold mb-3">
-                Zones 1, 2, 3, and 4 Fully Covered
-              </div>
+              <div className="text-lg font-bold text-[#292727] mb-1">Direct Transport Service</div>
+              <div className="text-xs text-emerald-700 font-semibold mb-3">Zones 1, 2, 3, and 4 Fully Covered</div>
 
               <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                Safe, GPS-monitored transportation network connecting key
-                residential hubs across South Hyderabad and Western corridors:
+                Safe, GPS-monitored transportation network connecting key residential hubs across South Hyderabad and
+                Western corridors:
               </p>
 
               <div className="space-y-2 text-xs">
                 <div className="flex items-start gap-2 text-slate-700">
                   <Navigation className="w-3.5 h-3.5 text-[#EF7D2D] mt-0.5 shrink-0" />
                   <span>
-                    <strong>Zone 1:</strong> Shamshabad, Satamrai, Airport Road,
-                    Kolan Estates
+                    <strong>Zone 1:</strong> Shamshabad, Satamrai, Airport Road, Kolan Estates
                   </span>
                 </div>
                 <div className="flex items-start gap-2 text-slate-700">
                   <Navigation className="w-3.5 h-3.5 text-[#EF7D2D] mt-0.5 shrink-0" />
                   <span>
-                    <strong>Zone 2:</strong> Rajendranagar, Aramghar, Attapur,
-                    PVNR Expressway
+                    <strong>Zone 2:</strong> Rajendranagar, Aramghar, Attapur, PVNR Expressway
                   </span>
                 </div>
                 <div className="flex items-start gap-2 text-slate-700">
                   <Navigation className="w-3.5 h-3.5 text-[#EF7D2D] mt-0.5 shrink-0" />
                   <span>
-                    <strong>Zones 3 & 4:</strong> Gachibowli, Financial
-                    District, Nanakramguda & South Hyderabad
+                    <strong>Zones 3 & 4:</strong> Gachibowli, Financial District, Nanakramguda & South Hyderabad
                   </span>
                 </div>
               </div>

@@ -242,7 +242,7 @@ export const FAQ: React.FC<FAQProps> = ({ onFeeStructureClick }) => {
                               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#2F5D9F] hover:bg-[#254b82] text-white text-xs font-semibold shrink-0 cursor-pointer shadow-xs transition-colors"
                             >
                               <Download className="w-3.5 h-3.5" />
-                              <span>Request Fee Structure</span>
+                              <span>Request Fee Structure </span>
                             </button>
                           </div>
                         ) : (
