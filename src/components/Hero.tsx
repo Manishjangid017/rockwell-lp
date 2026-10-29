@@ -350,40 +350,6 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                 <span>Download Brochure</span>
               </button>
             </motion.div>
-
-            {/* Accredited Global Pathways Strip */}
-            <motion.div variants={itemVariants}>
-              <div className="text-[11px] sm:text-xs uppercase tracking-wider text-slate-500 font-bold mb-3 flex items-center gap-2">
-                <span className="w-4 h-px bg-slate-400/60" />
-                ACCREDITED GLOBAL PATHWAYS
-                <span className="w-4 h-px bg-slate-400/60" />
-              </div>
-
-              <div className="flex flex-wrap items-center gap-2.5 sm:gap-2">
-                {/* CBSE Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-slate-200/80 shadow-xs hover:shadow-sm transition-shadow">
-                  <div className="flex flex-col leading-tight">
-                    <span className="text-[10px] font-black uppercase tracking-wide text-[#162740]">
-                      CBSE Affiliated
-                    </span>
-                    <span className="text-[9px] font-semibold text-slate-500 tracking-wide">Affil. No.: 3630152</span>
-                  </div>
-                </div>
-
-                {/* Divider dot */}
-                <span className="text-slate-300 text-lg font-thin select-none hidden sm:block">·</span>
-
-                {/* Cambridge Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-slate-200/80 shadow-xs hover:shadow-sm transition-shadow">
-                  <div className="flex flex-col leading-tight">
-                    <span className="text-[10px] font-black uppercase tracking-wide text-[#162740]">
-                      Cambridge Int'l
-                    </span>
-                    <span className="text-[9px] font-semibold text-slate-500 tracking-wide">Centre No.: IN716</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* RIGHT COLUMN: Floating Admissions Enquiry Card */}
