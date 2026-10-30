@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+﻿﻿import React, { useState, useRef, useEffect } from 'react';
 import {
   ArrowRight,
   Download,
@@ -186,7 +186,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
 
       console.log('CRM Lead Created Successfully:', result);
 
-      // Notify parent â€” this triggers ThankYouPage render in App.tsx
+      // Notify parent - this triggers ThankYouPage render in App.tsx
       if (onFormSubmit) {
         onFormSubmit({
           parentName,
@@ -282,7 +282,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
             animate={isInView ? 'visible' : 'hidden'}
             className="w-full max-w-none lg:col-span-7 xl:col-span-7 text-left"
           >
-            {/* School Brand Identity â€” Text Wordmark */}
+            {/* School Brand Identity - Text Wordmark */}
             <motion.div variants={itemVariants} className="mb-4 sm:mb-5">
               <div className="flex flex-col gap-0.5 select-none">
                 {/* Top rule */}
@@ -465,7 +465,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                         </select>
 
                         <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px]">
-                          â–¼
+                          ▼
                         </div>
                       </div>
                     </div> */}
@@ -507,7 +507,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                       </select>
 
                       <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px]">
-                        â–¼
+                        ▼
                       </div>
                     </div>
                   </div>
@@ -629,7 +629,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick, onBrochureClick, onFee
                     </a>
                   </span>
                 </div>
-                <span>â€¢</span>
+                <span>•</span>
                 <div className="flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
 
